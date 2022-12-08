@@ -1,0 +1,18 @@
+@use "./variables" as *;
+
+body {
+  background-color: $body-bg;
+}
+
+// DashBoard
+.credit-card-container {
+  background-image: linear-gradient(
+    90deg,
+    hsl(198, 98%, 76%),
+    hsl(249, 100%, 80%)
+  );
+  p {
+    margin-bottom: 0.25rem;
+    text-align: left;
+  }
+}

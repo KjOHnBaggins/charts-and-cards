@@ -2,4 +2,35 @@
 @import "./node_modules/bootstrap/scss/variables";
 @import "./node_modules/bootstrap/scss/mixins";
 $body-bg: hsl(240, 27%, 98%);
+$container-bg: hsl(0, 0%, 100%);
+
+//Color System
+$purple: hsl(271, 91%, 65%);
+$white: #fff;
+$blue: #3258f2;
+$lightBlue: #a0eade;
+$cambridgeBlue: #bfd2bf;
+$orange: #f2545b;
+$red: #a93f55;
+$green: #646f4b;
+$color: (
+  "purple": $purple,
+  "blue": $blue,
+  "orange": $orange,
+  "lightBlue": $lightBlue,
+  "cambridgeBlue": $cambridgeBlue,
+  "green": $green,
+  "red": $red,
+);
+
+//Variants
+$primary: $purple;
+$secondary: $lightBlue;
+$success: $green;
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 @import "./node_modules/bootstrap/scss/bootstrap";

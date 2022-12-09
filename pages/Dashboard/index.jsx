@@ -1,6 +1,9 @@
 import Breadcrumb from "../../src/components/Common/Breadcrumb";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import CardComp from "./CardComp";
+import MetricsComp from "./MetricsComp";
+import ColumnChart from "./ColumnChart";
+import { periodData } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Dashboard = () => {
@@ -32,6 +35,7 @@ const Dashboard = () => {
         <Row>
           <Col xl="4">
             <CardComp />
+            <MetricsComp />
           </Col>
           <Col xl="8">
             <Row>
@@ -56,6 +60,14 @@ const Dashboard = () => {
                   </Card>
                 </Col>
               ))}
+            </Row>
+            <Row>
+              <Col xs="12">
+                <ColumnChart
+                  periodData={periodData}
+                  dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+                />
+              </Col>
             </Row>
           </Col>
         </Row>

@@ -16,3 +16,60 @@ body {
     text-align: left;
   }
 }
+
+.mini-stats-wid {
+  .mini-stats-icon {
+    overflow: hidden;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 3.2rem;
+      background-color: rgba($container-bg, 0.1);
+      top: -5px;
+      left: 1rem;
+      transform: rotate(32deg);
+      transition: all 400ms;
+    }
+
+    &::after {
+      left: -0.8rem;
+      width: 0.8rem;
+      transition: all 200ms;
+    }
+  }
+
+  &:hover {
+    .mini-stats-icon {
+      &::after {
+        left: 4rem;
+      }
+    }
+  }
+}
+
+.icon-container {
+  align-items: center;
+  background-color: $primary;
+  color: $container-bg;
+  display: flex;
+  font-weight: 500;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.icon-sm {
+  width: 3rem;
+  height: 3rem;
+}
+
+// Common
+.card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.75rem 1.5rem rgb(18, 38, 63, 0.1);
+  border: none;
+}

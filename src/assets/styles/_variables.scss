@@ -1,8 +1,6 @@
 @import "./node_modules/bootstrap/scss/functions";
 @import "./node_modules/bootstrap/scss/variables";
 @import "./node_modules/bootstrap/scss/mixins";
-$body-bg: hsl(240, 27%, 98%);
-$container-bg: hsl(0, 0%, 100%);
 
 //Color System
 $purple: hsl(271, 91%, 65%);
@@ -27,10 +25,40 @@ $color: (
 $primary: $purple;
 $secondary: $lightBlue;
 $success: $green;
+$link-color: $primary;
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
   "success": $success,
 );
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+
+$body-bg: hsl(240, 27%, 98%);
+$container-bg: hsl(0, 0%, 100%);
+$container-padding: 24px;
+$sidebar-width: 10rem;
+$sidebar-width-collapsed: 4rem;
+$border-color: #e9ecef;
+$btn-text-color: $white;
+
+.dark {
+  $container-bg: #111c44;
+  $body-bg: #0f172a;
+  $link-color: black;
+  $link-hover-color: $primary;
+  $text-color: black;
+  $card-bg: $container-bg;
+  $body-color: #fff;
+  $btn-text-color: black;
+  --#{$variable-prefix}body-bg: #{$body-bg};
+  --#{$variable-prefix}link-color: #{$link-color};
+  --#{$variable-prefix}container-bg: #{$container-bg};
+  --#{$variable-prefix}text-color: #{$text-color};
+  --#{$variable-prefix}card-bg: #{$card-bg};
+  --#{$variable-prefix}body-color: #{$body-color};
+  --#{$variable-prefix}btn-text-color: #{$btn-text-color};
+  --#{$variable-prefix}link-hover-color: #{$link-hover-color};
+
+  @import "./node_modules/bootstrap/scss/bootstrap";
+}
 @import "./node_modules/bootstrap/scss/bootstrap";

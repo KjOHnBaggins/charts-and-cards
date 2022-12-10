@@ -3,6 +3,9 @@ import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import CardComp from "./CardComp";
 import MetricsComp from "./MetricsComp";
 import ColumnChart from "./ColumnChart";
+import ActivityComp from "./ActivityComp";
+import AdComp from "./AdComp";
+import CityRankings from "./CityRankings";
 import { periodData } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -63,12 +66,25 @@ const Dashboard = () => {
             </Row>
             <Row>
               <Col xs="12">
-                <ColumnChart
-                  periodData={periodData}
-                  dataColors={["#a855f7", "#3258f2", "#a0eade"]}
-                />
+                <Card>
+                  <ColumnChart
+                    periodData={periodData}
+                    dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+                  />
+                </Card>
               </Col>
             </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col xl="4">
+            <AdComp />
+          </Col>
+          <Col xl="4">
+            <ActivityComp />
+          </Col>
+          <Col xl="4">
+            <CityRankings />
           </Col>
         </Row>
       </Container>

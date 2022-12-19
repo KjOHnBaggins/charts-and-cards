@@ -13,6 +13,7 @@ import { MenuContext } from "./context/menu";
 const App = () => {
   library.add(fas);
   const [{ menuClass }] = useContext(MenuContext);
+
   return (
     <>
       <Router>

@@ -1,16 +1,32 @@
-const periodData = [
-  {
-    name: "Clothing",
-    data: [44, 55, 41, 67, 12, 76, 16, 43, 18, 24, 33, 45],
-  },
-  {
-    name: "Shoes",
-    data: [3, 12, 34, 7, 27, 18, 14, 23, 11, 13, 25, 21],
-  },
-  {
-    name: "Accessories",
-    data: [10, 11, 7, 15, 21, 12, 8, 9, 18, 12, 20, 17],
-  },
-];
+export const BASE_URL = "http://api.worldbank.org/v2/country";
 
-export { periodData };
+export const fetchFromAPI = async (countryCode) => {
+  const data = await fetch(
+    `${BASE_URL}/${countryCode}/indicator/SP.POP.TOTL?format=json`
+  ).then((response) => response.json());
+  const res = await fetch(
+    `${BASE_URL}/${countryCode}/indicator/SL.UEM.TOTL.ZS?format=json`
+  ).then((response) => response.json());
+  const maleEmployment = await fetch(
+    `${BASE_URL}/us/indicator/BI.EMP.TOTL.PB.MA.ZS?format=json`
+  ).then((response) => response.json());
+  const femaleEmployment = await fetch(
+    `${BASE_URL}/us/indicator/BI.EMP.TOTL.PB.FE.ZS?format=json`
+  ).then((response) => response.json());
+
+  // const gender = [];
+  // const regex = new RegExp("Gender", "i");
+  // for (let i = 300; i <= 400; i++) {
+  //   const res = await fetch(
+  //     `https://api.worldbank.org/v2/indicator?page=${i}&format=json`
+  //   ).then((response) => response.json());
+  //   gender.push(...res[1].filter((res) => regex.test(res?.name)));
+  // }
+
+  return { data, res, maleEmployment, femaleEmployment };
+};
+// SL.UEM.TOTL indo laobur servey
+// SL.UEM.TOTL.NE.ZS national
+// SL.UEM.TOTL.ZS ilo
+// BI.EMP.TOTL.PB.FE.ZS public sector employment female
+// BI.EMP.TOTL.PB.MA.ZS public sector employment male

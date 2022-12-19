@@ -6,7 +6,6 @@ import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
 import CityRankings from "./CityRankings";
-import { periodData } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Dashboard = () => {
@@ -67,10 +66,7 @@ const Dashboard = () => {
             <Row>
               <Col xs="12">
                 <Card>
-                  <ColumnChart
-                    periodData={periodData}
-                    dataColors={["#a855f7", "#3258f2", "#a0eade"]}
-                  />
+                  <ColumnChart dataColors={["#a855f7", "#3258f2", "#a0eade"]} />
                 </Card>
               </Col>
             </Row>

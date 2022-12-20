@@ -1,37 +1,36 @@
-import React from "react";
-import { Card, Row, Col } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import ReactApexChart from "react-apexcharts";
+import { fetchPopulationByAges } from "../../src/data";
+
 const CardComp = () => {
+  const [populationByAges, setPopulationByAges] = useState([]);
+  useEffect(() => {
+    fetchPopulationByAges("us").then(({ child, teenage, adult, elderly }) => {
+      setPopulationByAges([
+        parseFloat(child[1][2].value?.toFixed(3)),
+        parseFloat(teenage[1][2].value?.toFixed(3)),
+        parseFloat(adult[1][2].value?.toFixed(3)),
+        parseFloat(elderly[1][2].value?.toFixed(3)),
+      ]);
+    });
+  }, []);
+  const options = {
+    series: populationByAges,
+    chartOptions: {
+      labels: ["Age 0-14", "Age 15-24", "Age 25-64", "Age 65 and higher"],
+    },
+  };
   return (
-    <>
-      <Card className="overflow-hidden text-whtie bg-primary border-0 credit-card-container p-3 px-5">
-        <Row>
-          <Col>
-            <div className="">
-              <p className="font-weight-normal">Name</p>
-              <p className="font-weight-bold">Tony</p>
-            </div>
-            <div className="pt-1">
-              <p className="font-weight-normal">Card Number</p>
-              <p className="font-weight-bold">4642 3489 9867</p>
-            </div>
-            <div className="pt-2 d-flex justify-content-between">
-              <div className="">
-                <p className="font-weight-normal">Valid</p>
-                <p className="font-weight-bold">11/15</p>
-              </div>
-              <div className="">
-                <p className="font-weight-normal">Expiry</p>
-                <p className="font-weight-bold">11/15</p>
-              </div>
-              <div className="">
-                <p className="font-weight-normal">CVV</p>
-                <p className="font-weight-bold">...</p>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Card>
-    </>
+    <div className="">
+      <p className="">Us Population by Ages</p>
+      <ReactApexChart
+        type="polarArea"
+        options={options.chartOptions}
+        series={options.series}
+        height="300"
+        className="apex-charts"
+      />
+    </div>
   );
 };
 export default CardComp;

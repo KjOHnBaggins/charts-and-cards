@@ -1,17 +1,28 @@
 import { Card, CardBody, CardTitle, Progress } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { fetchCountryInfo } from "../../src/data";
 const CityRankings = () => {
+  const [capitalCity, setCapitalCity] = useState(null);
+  const [region, setRegion] = useState(null);
+
+  useEffect(() => {
+    fetchCountryInfo("us").then(({ country }) => {
+      setCapitalCity(country[1][0]?.capitalCity);
+      setRegion(country[1][0]?.region.value);
+    });
+  }, []);
   return (
     <>
       <Card>
         <CardBody>
-          <CardTitle className="mb-4">Top Selling Cities</CardTitle>
+          <CardTitle className="mb-4">Region and Capital City</CardTitle>
           <div className="text-center">
             <div className="mb-4">
               <FontAwesomeIcon icon="fa-solid fa-location-dot" />
             </div>
-            <h3>2,3951</h3>
-            <p>Seattle</p>
+            <h3>{capitalCity}</h3>
+            <p>{region}</p>
           </div>
           <div className="table-responsive mt-4">
             <table className="table align-middle table-nowrap">

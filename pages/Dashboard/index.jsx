@@ -6,27 +6,34 @@ import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
 import CityRankings from "./CityRankings";
+import { fetchInternetUsage, fetchGDP } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+  const [internetUsage, setInternetUsage] = useState();
+  const [gdp, setGdp] = useState();
+  useEffect(() => {
+    fetchInternetUsage("us").then(({ internetUsage }) => {
+      setInternetUsage(internetUsage[1][1].value);
+    });
+    fetchGDP("us").then(({ gdp }) => {
+      setGdp(gdp[1][1].value);
+    });
+  }, []);
+
   const reports = [
     {
-      title: "Orders",
-      iconClass: "fa-bag-shopping",
-      description: "1,235",
+      title: "GDP",
+      iconClass: "fa-globe",
+      description: `${(gdp / Math.pow(10, 12))?.toFixed(4)} trillion dollars`,
       percent: "+1.2",
     },
     {
-      title: "Revenue",
-      iconClass: "fa-money-check-dollar",
-      description: "$35, 723",
-      percent: "-5",
-    },
-    {
-      title: "Sales",
+      title: "Individuals using internet (% of population)",
       iconClass: "fa-sack-dollar",
-      description: "$160,230",
-      percent: "+20",
+      description: `${internetUsage?.toFixed(2)}%`,
+      percent: "-5",
     },
   ];
 
@@ -42,7 +49,7 @@ const Dashboard = () => {
           <Col xl="8">
             <Row>
               {reports.map((report, key) => (
-                <Col md="4" key={"_col_" + key}>
+                <Col key={"_col_" + key}>
                   <Card className="mini-stats-wid">
                     <CardBody>
                       <div className="d-flex">

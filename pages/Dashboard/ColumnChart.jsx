@@ -3,133 +3,88 @@ import ReactApexChart from "react-apexcharts";
 import { fetchFromAPI } from "../../src/data";
 
 const ColumnChart = ({ dataColor }) => {
-  const [series, setSeries] = useState([]);
-  const [unemploymentSeries, setUnemploymentSeries] = useState([]);
-  const [maleEmploymentSeries, setMaleEmploymentSeries] = useState([]);
-  const [femaleEmploymentSeries, setFemaleEmploymentSeries] = useState([]);
+  const [populationSeries, setPopulationSeries] = useState([]);
+  const [malePopulationSeries, setMalePopulationSeries] = useState([]);
+  const [femalePopulationSeries, setFemalePopulationSeries] = useState([]);
 
   const chartData = {
-    name: series[0]?.country?.value,
-    population: series
-      .map((data) => Math.floor(data.value / 1000000))
-      .reverse()
-      .slice(18),
-    timeline: series
+    name: populationSeries[0]?.country?.value,
+    timeline: populationSeries
       .map((data) => data.date)
       .reverse()
       .slice(18),
-    unemployment: unemploymentSeries
-      .map((data) => Math.round(data.value * 100) / 100)
+    population: populationSeries
+      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
       .reverse()
       .slice(18),
-    maleEmployment: maleEmploymentSeries
-      .map((data) => parseFloat(data.value?.toFixed(3)) * 100)
-      .reverse(),
-
-    femaleEmployment: femaleEmploymentSeries
-      .map((data) => parseFloat(data.value?.toFixed(3)) * 100)
-      .reverse(),
+    malePopulation: malePopulationSeries
+      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
+      .reverse()
+      .slice(18),
+    femalePopulation: femalePopulationSeries
+      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
+      .reverse()
+      .slice(18),
   };
 
   useEffect(() => {
-    fetchFromAPI("us").then(
-      ({ data, res, maleEmployment, femaleEmployment }) => {
-        setSeries(data[1]);
-        setUnemploymentSeries(res[1]);
-        setMaleEmploymentSeries(maleEmployment[1]);
-        setFemaleEmploymentSeries(femaleEmployment[1]);
+    fetchFromAPI("br").then(
+      ({ population, malePopulation, femalePopulation }) => {
+        setPopulationSeries(population[1]);
+        setMalePopulationSeries(malePopulation[1]);
+        setFemalePopulationSeries(femalePopulation[1]);
       }
     );
   }, []);
-  console.log(chartData.maleEmployment);
-  console.log(chartData.femaleEmployment);
-  // console.log(chartData.population);
-  // console.log(series);
-  // console.log(unemploymentSeries);
-  // console.log(maleEmploymentSeries);
-  // console.log(femaleEmploymentSeries);
 
   const dataLines = [
-    // {
-    //   name: `pop`,
-    //   data: chartData.population,
-    // },
     {
-      name: `unemploy`,
-      data: chartData.unemployment,
+      name: `Total Population`,
+      data: chartData.population,
     },
     {
-      name: `maleemploy`,
-      data: chartData.maleEmployment,
+      name: `Male Population`,
+      data: chartData.malePopulation,
     },
     {
-      name: `femaleunemploy`,
-      data: chartData.femaleEmployment,
+      name: `Female Population`,
+      data: chartData.femalePopulation,
     },
   ];
 
   const options = {
     chart: {
-      id: "basic-bar",
-      toolbar: {
-        show: false,
-      },
       zoom: {
         enabled: false,
       },
-      stroke: {
-        curve: "smooth",
-      },
-      dataLabels: {
-        enabled: false,
-      },
+    },
+    stroke: {
+      curve: "smooth",
     },
     title: {
-      text: `${chartData.name} population in million`,
+      text: `${chartData.name} population`,
       align: "left",
+      offsetY: 25,
+      offsetX: 20,
     },
-    xaxis: {
-      categories: chartData.timeline,
+    subtitle: {
+      text: "Million",
+      offsetY: 45,
+      offsetX: 20,
     },
-    annotations: {
-      xaxis: [
-        {
-          x: chartData.timeline[18],
-          strokeDashArray: 0,
-          borderColor: "#775DD0",
-          label: {
-            borderColor: "#775DD0",
-            style: {
-              color: "#fff",
-              background: "#775DD0",
-            },
-            text: "2008 Financial Crisis hits",
-          },
-        },
-      ],
-      points: [
-        {
-          x: chartData.timeline[17],
-          y: 300,
-          marker: {
-            size: 9,
-            fillColor: "#fff",
-            strokeColor: "red",
-            radius: 2,
-            // cssClass: "apexcharts-custom-class",
-          },
-          label: {
-            borderColor: "#FF4560",
-            offsetY: 0,
-            style: {
-              color: "#FF4560",
-              background: "transparent",
-            },
+    markers: {
+      size: 3,
+      strokeWidth: 0,
+      hover: {
+        size: 5,
+      },
+    },
 
-            text: "300M",
-          },
-        },
-      ],
+    xaxis: {
+      tooltip: {
+        enabled: false,
+      },
+      categories: chartData.timeline,
     },
   };
   return (

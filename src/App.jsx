@@ -13,17 +13,35 @@ import { MenuContext } from "./context/menu";
 const App = () => {
   library.add(fas);
   const [{ menuClass }] = useContext(MenuContext);
+  const [countryCode, setCountryCode] = useState(null);
+  const [searchDataCountry, setSearchDataCountry] = useState(null);
 
+  const handleOnSearchChange = (searchData) => {
+    setSearchDataCountry(searchData);
+  };
+
+  console.log(searchDataCountry);
+
+  useEffect(() => {
+    setCountryCode(searchDataCountry?.value);
+  }, [searchDataCountry]);
+
+  console.log(countryCode);
   return (
     <>
       <Router>
         <div className={menuClass}>
-          <Header />
+          <Header onSearchChange={handleOnSearchChange} />
           <SideBarContainer />
           <div className="main-content">
             <div className="page-content">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route
+                  path="/"
+                  element={
+                    countryCode && <Dashboard countryCode={countryCode} />
+                  }
+                />
                 <Route path="/users" element={<Users />} />
               </Routes>
             </div>

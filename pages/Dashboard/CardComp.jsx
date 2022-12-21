@@ -2,18 +2,29 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { fetchPopulationByAges } from "../../src/data";
 
-const CardComp = () => {
+const CardComp = ({ country, countryCode }) => {
   const [populationByAges, setPopulationByAges] = useState([]);
   useEffect(() => {
-    fetchPopulationByAges("us").then(({ child, teenage, adult, elderly }) => {
-      setPopulationByAges([
-        parseFloat(child[1][2].value?.toFixed(3)),
-        parseFloat(teenage[1][2].value?.toFixed(3)),
-        parseFloat(adult[1][2].value?.toFixed(3)),
-        parseFloat(elderly[1][2].value?.toFixed(3)),
-      ]);
-    });
+    fetchPopulationByAges(countryCode).then(
+      ({ child, teenage, adult, elderly }) => {
+        setPopulationByAges([
+          !child[1][5].value
+            ? "Data doesnt exist"
+            : parseFloat(child[1][5].value?.toFixed(3)),
+          !teenage[1][5].value
+            ? "Data doesnt exist"
+            : parseFloat(teenage[1][5].value?.toFixed(3)),
+          !adult[1][5].value
+            ? "Data doesnt exist"
+            : parseFloat(adult[1][5].value?.toFixed(3)),
+          !elderly[1][5].value
+            ? "Data doesnt exist"
+            : parseFloat(elderly[1][5].value?.toFixed(3)),
+        ]);
+      }
+    );
   }, []);
+
   const options = {
     series: populationByAges,
     chartOptions: {
@@ -22,7 +33,9 @@ const CardComp = () => {
   };
   return (
     <div className="">
-      <p className="">Us Population by Ages</p>
+      <p className="">
+        {country ? country[0].name : "Loading"} Population by Ages
+      </p>
       <ReactApexChart
         type="polarArea"
         options={options.chartOptions}

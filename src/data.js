@@ -4,14 +4,11 @@ export const fetchCountryInfo = async (countryCode) => {
   const country = await fetch(`${BASE_URL}/${countryCode}?format=json`).then(
     (response) => response.json()
   );
-  console.log(country);
-
   return {
     country,
   };
 };
-
-export const fetchFromAPI = async (countryCode) => {
+export const fetchPopulation = async (countryCode) => {
   const population = await fetch(
     `${BASE_URL}/${countryCode}/indicator/SP.POP.TOTL?format=json`
   ).then((response) => response.json());

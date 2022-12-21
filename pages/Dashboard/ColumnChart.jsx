@@ -1,41 +1,39 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import { fetchFromAPI } from "../../src/data";
 
-const ColumnChart = ({ dataColor }) => {
-  const [populationSeries, setPopulationSeries] = useState([]);
-  const [malePopulationSeries, setMalePopulationSeries] = useState([]);
-  const [femalePopulationSeries, setFemalePopulationSeries] = useState([]);
-
+const ColumnChart = ({
+  dataColor,
+  populationSeries,
+  malePopulationSeries,
+  femalePopulationSeries,
+}) => {
   const chartData = {
-    name: populationSeries[0]?.country?.value,
+    name: populationSeries ? populationSeries[0]?.country?.value : null,
     timeline: populationSeries
-      .map((data) => data.date)
-      .reverse()
-      .slice(18),
+      ? populationSeries
+          .map((data) => data?.date)
+          .reverse()
+          .slice(18)
+      : null,
     population: populationSeries
-      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
-      .reverse()
-      .slice(18),
+      ? populationSeries
+          .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
+          .reverse()
+          .slice(18)
+      : null,
     malePopulation: malePopulationSeries
-      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
-      .reverse()
-      .slice(18),
+      ? malePopulationSeries
+          .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
+          .reverse()
+          .slice(18)
+      : null,
     femalePopulation: femalePopulationSeries
-      .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
-      .reverse()
-      .slice(18),
+      ? femalePopulationSeries
+          .map((data) => (data.value ? Math.floor(data.value / 1000000) : null))
+          .reverse()
+          .slice(18)
+      : null,
   };
-
-  useEffect(() => {
-    fetchFromAPI("br").then(
-      ({ population, malePopulation, femalePopulation }) => {
-        setPopulationSeries(population[1]);
-        setMalePopulationSeries(malePopulation[1]);
-        setFemalePopulationSeries(femalePopulation[1]);
-      }
-    );
-  }, []);
 
   const dataLines = [
     {

@@ -6,33 +6,58 @@ import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
 import CityRankings from "./CityRankings";
-import { fetchInternetUsage, fetchGDP } from "../../src/data";
+import {
+  fetchGDP,
+  fetchCountryInfo,
+  fetchInternetUsage,
+  fetchPopulation,
+} from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-const Dashboard = () => {
-  const [internetUsage, setInternetUsage] = useState();
-  const [gdp, setGdp] = useState();
+const Dashboard = ({ countryCode }) => {
+  const [country, setCountry] = useState(null);
+  const [internetUsage, setInternetUsage] = useState(null);
+  const [gdp, setGdp] = useState(null);
+  const [populationSeries, setPopulationSeries] = useState([]);
+  const [malePopulationSeries, setMalePopulationSeries] = useState([]);
+  const [femalePopulationSeries, setFemalePopulationSeries] = useState([]);
+  console.log(`Dashboard: ${countryCode}`);
+
   useEffect(() => {
-    fetchInternetUsage("us").then(({ internetUsage }) => {
-      setInternetUsage(internetUsage[1][1].value);
+    fetchCountryInfo(countryCode).then(({ country }) => {
+      setCountry(country[1]);
     });
-    fetchGDP("us").then(({ gdp }) => {
+    fetchGDP(countryCode).then(({ gdp }) => {
       setGdp(gdp[1][1].value);
     });
-  }, []);
+    fetchInternetUsage(countryCode).then(({ internetUsage }) => {
+      setInternetUsage(internetUsage[1][1].value);
+    });
+    fetchPopulation(countryCode).then(
+      ({ population, malePopulation, femalePopulation }) => {
+        setPopulationSeries(population[1]);
+        setMalePopulationSeries(malePopulation[1]);
+        setFemalePopulationSeries(femalePopulation[1]);
+      }
+    );
+  }, [countryCode]);
 
   const reports = [
     {
       title: "GDP",
-      iconClass: "fa-globe",
-      description: `${(gdp / Math.pow(10, 12))?.toFixed(4)} trillion dollars`,
+      iconClass: "fa-sack-dollar",
+      description: gdp
+        ? `${(gdp / Math.pow(10, 12))?.toFixed(4)} trillion dollars`
+        : "Loading",
       percent: "+1.2",
     },
     {
-      title: "Individuals using internet (% of population)",
-      iconClass: "fa-sack-dollar",
-      description: `${internetUsage?.toFixed(2)}%`,
+      title: "Coordinates (lat and long)",
+      iconClass: "fa-location-dot",
+      description: country
+        ? `${country[0].latitude} ${country[0].longitude}`
+        : "Loading",
       percent: "-5",
     },
   ];
@@ -40,11 +65,14 @@ const Dashboard = () => {
   return (
     <>
       <Container>
-        <Breadcrumb title="Admin" breadcrumbItem="Dashboard" />
+        <Breadcrumb
+          title="Admin"
+          breadcrumbItem={country ? "Search results" : "Not Found"}
+        />
         <Row>
           <Col xl="4">
-            <CardComp />
-            <MetricsComp />
+            <CardComp country={country} countryCode={countryCode} />
+            <MetricsComp countryCode={countryCode} />
           </Col>
           <Col xl="8">
             <Row>
@@ -73,7 +101,12 @@ const Dashboard = () => {
             <Row>
               <Col xs="12">
                 <Card>
-                  <ColumnChart dataColors={["#a855f7", "#3258f2", "#a0eade"]} />
+                  <ColumnChart
+                    dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+                    populationSeries={populationSeries}
+                    malePopulationSeries={malePopulationSeries}
+                    femalePopulationSeries={femalePopulationSeries}
+                  />
                 </Card>
               </Col>
             </Row>
@@ -87,7 +120,13 @@ const Dashboard = () => {
             <ActivityComp />
           </Col>
           <Col xl="4">
-            <CityRankings />
+            <CityRankings
+              country={country}
+              internetUsage={internetUsage}
+              populationSeries={populationSeries}
+              malePopulationSeries={malePopulationSeries}
+              femalePopulationSeries={femalePopulationSeries}
+            />
           </Col>
         </Row>
       </Container>

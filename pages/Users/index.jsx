@@ -37,7 +37,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="/public/images/population.png"
+                src="/images/population.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -62,7 +62,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="/public/images/labour-statistics.png"
+                src="/images/labour-statistics.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -90,7 +90,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="/public/images/population-by-ages.png"
+                src="/images/population-by-ages.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -121,7 +121,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="/public/images/country-info.png"
+                src="/images/country-info.png"
                 className="img-fluid"
                 alt=""
               />
@@ -149,7 +149,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="/public/images/gdp-and-coordinates.png"
+                src="/images/gdp-and-coordinates.png"
                 className="img-fluid"
                 alt=""
               />
@@ -169,11 +169,7 @@ const Users = () => {
         <Col>
           <Card>
             <CardBody>
-              <img
-                src="/public/images/github-star.png"
-                className="img-fluid"
-                alt=""
-              />
+              <img src="/images/github-star.png" className="img-fluid" alt="" />
               <p className="lead">Github</p>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Styles</li>
@@ -192,11 +188,7 @@ const Users = () => {
         <Col>
           <Card>
             <CardBody>
-              <img
-                src="/public/images/about.png"
-                className="img-fluid"
-                alt=""
-              />
+              <img src="/images/about.png" className="img-fluid" alt="" />
               <p className="lead">About</p>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Styles</li>

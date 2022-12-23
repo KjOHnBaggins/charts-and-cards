@@ -86,7 +86,7 @@ const ColumnChart = ({
     },
   };
   return (
-    <div className="">
+    <div className="my-5">
       <ReactApexChart
         type="area"
         options={options}

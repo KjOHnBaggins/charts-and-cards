@@ -22,7 +22,6 @@ const Dashboard = ({ countryCode }) => {
   const [populationSeries, setPopulationSeries] = useState([]);
   const [malePopulationSeries, setMalePopulationSeries] = useState([]);
   const [femalePopulationSeries, setFemalePopulationSeries] = useState([]);
-  console.log(`Dashboard: ${countryCode}`);
 
   useEffect(() => {
     fetchCountryInfo(countryCode).then(({ country }) => {
@@ -71,10 +70,15 @@ const Dashboard = ({ countryCode }) => {
         />
         <Row>
           <Col xl="4">
-            <CardComp country={country} countryCode={countryCode} />
-            <MetricsComp countryCode={countryCode} />
-          </Col>
-          <Col xl="8">
+            <Row>
+              <CityRankings
+                country={country}
+                internetUsage={internetUsage}
+                populationSeries={populationSeries}
+                malePopulationSeries={malePopulationSeries}
+                femalePopulationSeries={femalePopulationSeries}
+              />
+            </Row>
             <Row>
               {reports.map((report, key) => (
                 <Col key={"_col_" + key}>
@@ -99,34 +103,25 @@ const Dashboard = ({ countryCode }) => {
               ))}
             </Row>
             <Row>
-              <Col xs="12">
-                <Card>
-                  <ColumnChart
-                    dataColors={["#a855f7", "#3258f2", "#a0eade"]}
-                    populationSeries={populationSeries}
-                    malePopulationSeries={malePopulationSeries}
-                    femalePopulationSeries={femalePopulationSeries}
-                  />
-                </Card>
-              </Col>
+              <AdComp />
             </Row>
+          </Col>
+          <Col xl="8">
+            <MetricsComp countryCode={countryCode} />
+            <Card className="my-5">
+              <ColumnChart
+                dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+                populationSeries={populationSeries}
+                malePopulationSeries={malePopulationSeries}
+                femalePopulationSeries={femalePopulationSeries}
+              />
+            </Card>
+            <CardComp country={country} countryCode={countryCode} />
           </Col>
         </Row>
         <Row>
-          <Col xl="4">
-            <AdComp />
-          </Col>
-          <Col xl="4">
+          <Col>
             <ActivityComp />
-          </Col>
-          <Col xl="4">
-            <CityRankings
-              country={country}
-              internetUsage={internetUsage}
-              populationSeries={populationSeries}
-              malePopulationSeries={malePopulationSeries}
-              femalePopulationSeries={femalePopulationSeries}
-            />
           </Col>
         </Row>
       </Container>

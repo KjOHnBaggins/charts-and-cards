@@ -6,10 +6,8 @@ const Footer = () => {
     <footer>
       <Container fluid>
         <Row>
-          <Col md={6}>{new Date().getFullYear()} Demo.</Col>
-          <Col md={6}>
-            <div className="text-sm-end d-none d-sm-block">Made with love</div>
-          </Col>
+          <Col>{new Date().getFullYear()} Demo.</Col>
+          <Col className="d-flex justify-content-end">Made with love</Col>
         </Row>
       </Container>
     </footer>

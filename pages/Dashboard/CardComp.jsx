@@ -23,7 +23,7 @@ const CardComp = ({ country, countryCode }) => {
         ]);
       }
     );
-  }, []);
+  }, [countryCode]);
 
   const options = {
     series: populationByAges,
@@ -32,8 +32,8 @@ const CardComp = ({ country, countryCode }) => {
     },
   };
   return (
-    <div className="">
-      <p className="">
+    <div className="my-5 text-left">
+      <p className="fw-bold mx-4">
         {country ? country[0].name : "Loading"} Population by Ages
       </p>
       <ReactApexChart

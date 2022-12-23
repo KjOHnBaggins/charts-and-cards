@@ -5,9 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ActivityComp = () => {
   return (
     <>
-      <Card>
+      <Card className="px-3">
         <CardBody>
-          <CardTitle className="mb-5">Activity</CardTitle>
+          <CardTitle className="mb-5 fw-bold">
+            About this project
+            <p className="mt-2">
+              This project is created in celebration of ten years anniversary of
+              a subreddit called r/dataisbeautiful.
+            </p>
+          </CardTitle>
           <ul className="verti-timeline list-unstyled">
             <li className="event-list">
               <div className="event-timeline-icon">
@@ -16,12 +22,15 @@ const ActivityComp = () => {
                   style={{ color: "#3258f2" }}
                 />
               </div>
-              <div className="flex-shrink-0 d-flex">
+              <div className="flex-shrink-0 ">
                 <div className="me-3">
-                  <h5 className="font-size-14">1 Jan </h5>
+                  <h5 className="">February 14, 2012</h5>
                 </div>
                 <div className="flex-grow">
-                  <div className="">Release of an Alpha Version</div>
+                  <a href="https://www.reddit.com/r/dataisbeautiful/">
+                    r/dataisbeautiful
+                  </a>
+                  , also known as Data Is Beautiful, was lauched on reddit.
                 </div>
               </div>
             </li>
@@ -32,15 +41,17 @@ const ActivityComp = () => {
                   style={{ color: "#3f2545b" }}
                 />
               </div>
-              <div className="flex-shrink-0 d-flex">
+              <div className="flex-shrink-0 ">
                 <div className="me-3">
-                  <h5 className="font-size-14">13 Feb </h5>
+                  <h5 className="">August 9, 2014</h5>
                 </div>
                 <div className="flex-grow">
-                  <div className="">
-                    Bug fixes and Beta release to a small group of users from
-                    testing... <Link to="#">Read More</Link>
-                  </div>
+                  A VentureBeat article noted that r/dataisbeautiful "...aims to
+                  collect the best of the Web in a daily rounded up of gorgeous
+                  data visualizations."
+                  <a href="https://venturebeat.com/business/data-is-beautiful-is-a-hidden-gem-for-gorgeous-data-visualizations/">
+                    Read More
+                  </a>
                 </div>
               </div>
             </li>
@@ -51,12 +62,18 @@ const ActivityComp = () => {
                   style={{ color: "#a93f55" }}
                 />
               </div>
-              <div className="flex-shrink-0 d-flex">
+              <div className="flex-shrink-0 ">
                 <div className="me-3">
-                  <h5 className="font-size-14">20 March </h5>
+                  <h5 className="">November 28, 2019 </h5>
                 </div>
                 <div className="flex-grow">
-                  <div className="">Pre-sedd funding is complete</div>
+                  the decision of moderators at r/dataisbeautiful to temporarily
+                  ban animated bar chart graphs showing the relative position of
+                  entities on a list over time – so-called bar chart races –
+                  received attention from The Next Web.
+                  <a href="https://thenextweb.com/news/reddit-dataisbeautiful-race-charts-ban">
+                    Read More
+                  </a>
                 </div>
               </div>
             </li>
@@ -67,20 +84,29 @@ const ActivityComp = () => {
                   style={{ color: "#00a9a5" }}
                 />
               </div>
-              <div className="flex-shrink-0 d-flex">
+              <div className="flex-shrink-0 ">
                 <div className="me-3">
-                  <h5 className="font-size-14">12 May </h5>
+                  <h5 className="">January 2020 </h5>
                 </div>
                 <div className="flex-grow">
-                  <div className="">Product market fit found</div>
+                  <a href="https://twitter.com/ellieapeake?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                    Eleanor Peake
+                  </a>
+                  noted that, because the subreddit had received so many
+                  submissions by Tinder users plotting their experiences on the
+                  app, one Reddit user set up a separate subreddit dedicated
+                  entirely to Tinder-related data visualizations.
                 </div>
               </div>
             </li>
           </ul>
           <div className="text-center mt-4">
-            <Link to="" className="btn btn-primary btn-sm btn-text">
+            <a
+              href="https://en.wikipedia.org/wiki/R/dataisbeautiful#:~:text=It%20was%20created%20in%202012,it%20has%2017.59%20million%20members."
+              className="btn btn-primary btn-sm btn-text"
+            >
               View More <i className="mdi mdi-arrow-right ms-1"></i>
-            </Link>
+            </a>
           </div>
         </CardBody>
       </Card>

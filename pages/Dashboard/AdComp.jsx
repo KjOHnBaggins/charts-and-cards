@@ -8,13 +8,16 @@ const AdComp = () => {
       <div className="ad-container position-relative h-100 p-4">
         <span className="image-cover"></span>
         <div className="f-flex flex-column flex-auto position-relative">
-          <h5 className="text-white">Build the future with us</h5>
+          <h5 className="text-white">Enjoying the site?</h5>
           <p className="text-white">
-            Don't miss the opportunity of working on the cutting-edge technology
-            and the most futuristiv.
+            Help me create more stuffs like this, by giving this project a star
+            on Github!
           </p>
-          <a href="" className="mt-auto mb-0 text-white">
-            Read More
+          <a
+            href="https://github.com/KjOHnBaggins/react-dashboard"
+            className="mt-auto mb-0 text-white"
+          >
+            Give a star!
             <FontAwesomeIcon icon="fa solid fa-arrow-right" className="ml-1" />
           </a>
         </div>

@@ -2,12 +2,16 @@ import React, { useContext, useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../context/theme";
-import { MenuContext } from "../../context/menu";
 
-const Header = ({ onSearchChange }) => {
+const Header = ({ onSearchChange, onToggle }) => {
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
-  const [{ menuClass, isCollapsed }, toggleMenu] = useContext(MenuContext);
+  const [closed, setClosed] = useState(false);
   const [search, setSearch] = useState(null);
+
+  const toggleMenu = () => {
+    setClosed(!closed);
+    onToggle(closed);
+  };
   // lets hardcode it for now
 
   const countryArray = [
@@ -80,15 +84,16 @@ const Header = ({ onSearchChange }) => {
             />
           </div>
           <div className="header-navigation">
-            <button className="theme-icon mx-4" onClick={toggleTheme}>
+            <button className="theme-icon" onClick={toggleTheme}>
               {isDark ? (
                 <FontAwesomeIcon icon="fa-solid fa-sun" className="p-1" />
               ) : (
                 <FontAwesomeIcon icon="fa-solid fa-moon" className="p-1" />
               )}
             </button>
-            <FontAwesomeIcon icon="fa-solid fa-user" className="p-1" />
-            <FontAwesomeIcon icon="fa-solid fa-gear" className="p-1" />
+            {/* gear and user icon */}
+            {/* <FontAwesomeIcon icon="fa-solid fa-user" className="p-1" /> */}
+            {/* <FontAwesomeIcon icon="fa-solid fa-gear" className="p-1" /> */}
           </div>
         </div>
       </div>

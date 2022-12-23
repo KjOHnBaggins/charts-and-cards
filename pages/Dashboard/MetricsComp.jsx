@@ -39,7 +39,7 @@ const MetricsComp = ({ dataColor, countryCode }) => {
         setFemaleEmploymentSeries(femaleEmployment[1]);
       }
     );
-  }, []);
+  }, [countryCode]);
 
   const dataLines = [
     {
@@ -128,7 +128,7 @@ const MetricsComp = ({ dataColor, countryCode }) => {
     },
   };
   return (
-    <div className="">
+    <div className="my-5">
       <ReactApexChart
         type="area"
         options={options}

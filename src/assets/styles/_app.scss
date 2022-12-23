@@ -86,8 +86,8 @@ body {
 }
 
 .verti-timeline {
-  border-left: 2px solid #f6f6f6;
-  margin: 0 10px;
+  border-left: 3px solid #f6f6f6;
+  margin-left: 0.6rem;
 
   .event-list {
     position: relative;
@@ -107,73 +107,64 @@ body {
 // Layout
 .navbar-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
-  padding: 0 calc($container-padding * 0.5) 0 0;
   height: 5rem;
+  // margin: 0 auto;
+  // padding: 0 calc($container-padding * 0.5) 0 0;
 }
 
 #page-topbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: $sidebar-width;
-  z-index: 5;
+  // position: fixed;
+  // top: 0;
+  // right: 0;
+  // left: $sidebar-width;
+  // z-index: 5;
   // background-color: $container-bg;
   box-shadow: 0 0.75rem 1.5rem rgb(18, 38, 63, 0.1);
 }
 
-.menu-item {
+.menu {
+  position: fixed;
+  z-index: 10;
+  top: 6rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: min(45%, 20rem);
+  background-color: pink;
+  border-radius: 1vw;
+}
+
+.menu-pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.5rem;
+  text-align: center;
   border-radius: 0.5rem;
-  .menu-pill {
-    padding: 0.5rem;
-    text-align: center;
-    background-color: $container-bg;
-    border-radius: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin-right: 0.2rem;
-    position: relative;
-    z-index: 4;
-  }
+}
+.menu-item {
   &:hover,
   &:active {
     color: $link-hover-color;
+    background-color: $container-bg;
   }
-}
-
-.menu-title {
-  padding: 0.625rem;
 }
 
 footer {
   padding: 20px calc($container-padding * 0.75);
-  right: 0;
   color: #74788d;
-  left: $sidebar-width;
+  max-width: 1444px;
+  margin: auto;
   height: 4rem;
-  position: absolute;
 }
 
-#sidebar-menu {
-  width: $sidebar-width;
-  bottom: 0;
-  margin-top: 0;
-  // position: fixed;
-  top: 0;
-  padding-top: 5rem;
-  background-color: $body-bg;
-  box-shadow: 0 0.75rem 1.5rem rgb(18, 38, 63, 0.1);
-  &.collapsed {
-    width: $sidebar-width-collapsed;
-  }
-}
-
-.menu {
-  width: $sidebar-width;
-  position: fixed;
+.sidebar-menu {
+  background-color: beige;
+  box-shadow: 0 0.75rem 1.5rem hsla(213, 56%, 16%, 0.35);
 }
 
 .logo {
@@ -186,16 +177,10 @@ footer {
   justify-content: center;
 }
 
-.main-content {
-  margin-left: $sidebar-width;
-  &.collapsed {
-    margin-left: 5rem;
-  }
-}
-
 .page-content {
-  padding: calc(5 * $container-padding) calc($container-padding * 0.75) 4rem
-    calc($container-padding * 0.75);
+  // padding: calc(5 * $container-padding) calc($container-padding * 0.75) 4rem
+  //   calc($container-padding * 0.75);
+  padding-block: 3rem 1.5rem;
 }
 
 // Common
@@ -207,23 +192,10 @@ footer {
 }
 
 .theme-icon {
+  margin-inline: clamp(0.8rem, 1.2rem, 1.5rem);
   background-color: transparent;
   border: 1px solid $border-color;
   border-radius: 0.5rem;
-}
-
-.collapsed {
-  .main-content {
-    margin-left: $sidebar-width-collapsed;
-  }
-  .menu,
-  #sidebar-menu {
-    width: $sidebar-width-collapsed;
-  }
-  #page-topbar,
-  footer {
-    left: $sidebar-width-collapsed;
-  }
 }
 
 .btn-text {

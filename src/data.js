@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.worldbank.org/v2/country";
+export const BASE_URL = "https://api.worldbank.org/v2/country";
 
 export const fetchCountryInfo = async (countryCode) => {
   const country = await fetch(`${BASE_URL}/${countryCode}?format=json`).then(

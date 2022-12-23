@@ -15,7 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-const Dashboard = ({ countryCode }) => {
+const Dashboard = ({ countryCode, adCompRef }) => {
   const [country, setCountry] = useState(null);
   const [internetUsage, setInternetUsage] = useState(null);
   const [gdp, setGdp] = useState(null);
@@ -103,7 +103,7 @@ const Dashboard = ({ countryCode }) => {
               ))}
             </Row>
             <Row>
-              <AdComp />
+              <AdComp ref={adCompRef} />
             </Row>
           </Col>
           <Col xl="8">

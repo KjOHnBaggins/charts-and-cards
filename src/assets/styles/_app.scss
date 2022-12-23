@@ -110,6 +110,8 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 5rem;
+  max-width: 1444px;
+  margin: auto;
   // margin: 0 auto;
   // padding: 0 calc($container-padding * 0.5) 0 0;
 }
@@ -128,7 +130,7 @@ body {
   position: fixed;
   z-index: 10;
   top: 6rem;
-  left: 1rem;
+  left: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -200,4 +202,8 @@ footer {
 
 .btn-text {
   color: $btn-text-color;
+}
+
+.invert-card {
+  background-color: $invert-bg-color;
 }

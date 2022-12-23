@@ -40,24 +40,28 @@ $sidebar-width: 10rem;
 $sidebar-width-collapsed: 4rem;
 $border-color: #e9ecef;
 $btn-text-color: $white;
+$invert-bg-color: #111c44;
 
 .dark {
   $container-bg: #111c44;
   $body-bg: #0f172a;
-  $link-color: black;
-  $link-hover-color: $primary;
+  $link-color: $primary;
+  $link-hover-color: #e9ecef;
   $text-color: black;
   $card-bg: $container-bg;
   $body-color: #fff;
   $btn-text-color: black;
+  $invert-text-color: #e9ecef;
+  $invert-bg-color: hsl(0, 0%, 100%);
   --#{$variable-prefix}body-bg: #{$body-bg};
-  --#{$variable-prefix}link-color: #{$link-color};
-  --#{$variable-prefix}container-bg: #{$container-bg};
-  --#{$variable-prefix}text-color: #{$text-color};
-  --#{$variable-prefix}card-bg: #{$card-bg};
   --#{$variable-prefix}body-color: #{$body-color};
-  --#{$variable-prefix}btn-text-color: #{$btn-text-color};
+  --#{$variable-prefix}container-bg: #{$container-bg};
+  --#{$variable-prefix}card-bg: #{$card-bg};
+  --#{$variable-prefix}link-color: #{$link-color};
   --#{$variable-prefix}link-hover-color: #{$link-hover-color};
+  --#{$variable-prefix}text-color: #{$text-color};
+  --#{$variable-prefix}btn-text-color: #{$btn-text-color};
+  --#{$variable-prefix}invert-bg-color: #{$invert-bg-color};
 
   @import "./node_modules/bootstrap/scss/bootstrap";
 }

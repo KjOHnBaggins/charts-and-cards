@@ -3,15 +3,10 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../context/theme";
 
-const Header = ({ onSearchChange, onToggle }) => {
+const Header = ({ onSearchChange, toggleMenu }) => {
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
-  const [closed, setClosed] = useState(false);
   const [search, setSearch] = useState(null);
 
-  const toggleMenu = () => {
-    setClosed(!closed);
-    onToggle(closed);
-  };
   // lets hardcode it for now
 
   const countryArray = [

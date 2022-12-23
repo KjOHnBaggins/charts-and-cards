@@ -1,5 +1,5 @@
 import "./assets/styles/index.scss";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useRef } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -8,15 +8,24 @@ import Dashboard from "../pages/Dashboard/index.jsx";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import SideBarContainer from "./components/Layout/SideBarContainer";
+import { Fade } from "reactstrap";
 
 const App = () => {
   library.add(fas);
-  const [closed, setClosed] = useState(false);
+  const [opened, setOpened] = useState(false);
   const [countryCode, setCountryCode] = useState(null);
   const [searchDataCountry, setSearchDataCountry] = useState(null);
+  const adCompRef = useRef();
 
-  const handleToggle = (isClosed) => {
-    setClosed(isClosed);
+  const scrollWithUseRef = (componentRef) => {
+    componentRef.current?.scrollIntoView({
+      block: "center",
+      behavior: "smooth",
+    });
+  };
+
+  const toggleMenu = () => {
+    setOpened(!opened);
   };
 
   const handleOnSearchChange = (searchData) => {
@@ -33,16 +42,28 @@ const App = () => {
         <div className="">
           <Header
             onSearchChange={handleOnSearchChange}
-            onToggle={handleToggle}
+            toggleMenu={toggleMenu}
           />
-          {closed && <SideBarContainer />}
+          <Fade in={opened} timeout={100}>
+            <SideBarContainer
+              toggleMenu={toggleMenu}
+              scrollWithUseRef={scrollWithUseRef}
+              adCompRef={adCompRef}
+            />
+          </Fade>
+
           <div className="main-content">
             <div className="page-content">
               <Routes>
                 <Route
                   path="/"
                   element={
-                    countryCode && <Dashboard countryCode={countryCode} />
+                    countryCode && (
+                      <Dashboard
+                        countryCode={countryCode}
+                        adCompRef={adCompRef}
+                      />
+                    )
                   }
                 />
                 <Route path="/users" element={<Users />} />

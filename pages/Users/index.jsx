@@ -37,7 +37,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/population.png"
+                src="/public/images/population.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -62,7 +62,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/labour-statistics.png"
+                src="/public/images/labour-statistics.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -90,7 +90,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/population-by-ages.png"
+                src="/public/images/population-by-ages.png"
                 className="img-fluid mb-1"
                 alt=""
               />
@@ -121,7 +121,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/country-info.png"
+                src="/public/images/country-info.png"
                 className="img-fluid"
                 alt=""
               />
@@ -149,7 +149,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/gdp-and-coordinates.png"
+                src="/public/images/gdp-and-coordinates.png"
                 className="img-fluid"
                 alt=""
               />
@@ -170,7 +170,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/github-star.png"
+                src="/public/images/github-star.png"
                 className="img-fluid"
                 alt=""
               />
@@ -193,7 +193,7 @@ const Users = () => {
           <Card>
             <CardBody>
               <img
-                src="../.././src/assets/images/about.png"
+                src="/public/images/about.png"
                 className="img-fluid"
                 alt=""
               />

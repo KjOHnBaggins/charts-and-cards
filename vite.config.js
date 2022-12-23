@@ -13,6 +13,6 @@ export default defineConfig({
     port: 8080,
   },
   build: {
-    assetsDir: "/public/images",
+    assetsDir: "public/images",
   },
 });

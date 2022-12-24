@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { forwardRef } from "react";
 import { Card } from "reactstrap";
 
-const AdComp = () => {
+const AdComp = ({ props }, githubref) => {
   return (
     <Card>
-      <div className="ad-container position-relative h-100 p-4">
+      <div className="ad-container position-relative h-100 p-4" ref={githubref}>
         <span className="image-cover"></span>
         <div className="f-flex flex-column flex-auto position-relative">
           <h5 className="text-white">Enjoying the site?</h5>
@@ -26,4 +26,4 @@ const AdComp = () => {
   );
 };
 
-export default AdComp;
+export default forwardRef(AdComp);

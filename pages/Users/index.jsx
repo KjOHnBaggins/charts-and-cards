@@ -42,16 +42,16 @@ const Users = () => {
                 alt=""
               />
               <p className="lead">Population</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
                   Chart type: <span className="fw-bold">area</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <p className="mb-0">Data from 1990 to 2021</p>
-                  <ul class="list-group list-group-numbered">
-                    <li class="list-group-item">Total population</li>
-                    <li class="list-group-item">Male population</li>
-                    <li class="list-group-item">Female population</li>
+                  <ul className="list-group list-group-numbered">
+                    <li className="list-group-item">Total population</li>
+                    <li className="list-group-item">Male population</li>
+                    <li className="list-group-item">Female population</li>
                   </ul>
                 </li>
               </ul>
@@ -67,19 +67,19 @@ const Users = () => {
                 alt=""
               />
               <p className="lead">Labour statistics</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
                   Chart type: <span className="fw-bold">area</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <p className="mb-0">
                     Data (mostly null recent yrs, exists short time periods)
                   </p>
-                  <ul class="list-group list-group-numbered">
-                    <li class="list-group-item">Unemployment rate</li>
-                    <li class="list-group-item">Employment rate</li>
-                    <li class="list-group-item">Male employment rate</li>
-                    <li class="list-group-item">Female employment rate</li>
+                  <ul className="list-group list-group-numbered">
+                    <li className="list-group-item">Unemployment rate</li>
+                    <li className="list-group-item">Employment rate</li>
+                    <li className="list-group-item">Male employment rate</li>
+                    <li className="list-group-item">Female employment rate</li>
                   </ul>
                 </li>
               </ul>
@@ -95,19 +95,19 @@ const Users = () => {
                 alt=""
               />
               <p className="lead">Population By Ages</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
                   Chart type: <span className="fw-bold">polararea</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <p className="mb-0">
                     Data (mostly null recent yrs, exists short time periods)
                   </p>
-                  <ul class="list-group list-group-numbered">
-                    <li class="list-group-item">Ages 0-14</li>
-                    <li class="list-group-item">Ages 15-24</li>
-                    <li class="list-group-item">Ages 25-64</li>
-                    <li class="list-group-item">Ages 65 and above</li>
+                  <ul className="list-group list-group-numbered">
+                    <li className="list-group-item">Ages 0-14</li>
+                    <li className="list-group-item">Ages 15-24</li>
+                    <li className="list-group-item">Ages 25-64</li>
+                    <li className="list-group-item">Ages 65 and above</li>
                   </ul>
                 </li>
               </ul>
@@ -126,17 +126,17 @@ const Users = () => {
                 alt=""
               />
               <p className="lead">Country Info</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Data</li>
-                <li class="list-group-item">
-                  <ul class="list-group list-group-numbered">
-                    <li class="list-group-item">Region</li>
-                    <li class="list-group-item">Capital city</li>
-                    <li class="list-group-item">Total population</li>
-                    <li class="list-group-item">Male population</li>
-                    <li class="list-group-item">Female population</li>
-                    <li class="list-group-item">Internet usage</li>
-                    <li class="list-group-item">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Data</li>
+                <li className="list-group-item">
+                  <ul className="list-group list-group-numbered">
+                    <li className="list-group-item">Region</li>
+                    <li className="list-group-item">Capital city</li>
+                    <li className="list-group-item">Total population</li>
+                    <li className="list-group-item">Male population</li>
+                    <li className="list-group-item">Female population</li>
+                    <li className="list-group-item">Internet usage</li>
+                    <li className="list-group-item">
                       Internet usage % progress bar
                     </li>
                   </ul>
@@ -154,12 +154,12 @@ const Users = () => {
                 alt=""
               />
               <p className="lead">GDP and Coordinates</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Data</li>
-                <li class="list-group-item">
-                  <ul class="list-group list-group-numbered">
-                    <li class="list-group-item">GDP</li>
-                    <li class="list-group-item">Coordinates</li>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Data</li>
+                <li className="list-group-item">
+                  <ul className="list-group list-group-numbered">
+                    <li className="list-group-item">GDP</li>
+                    <li className="list-group-item">Coordinates</li>
                   </ul>
                 </li>
               </ul>
@@ -171,14 +171,14 @@ const Users = () => {
             <CardBody>
               <img src="/images/github-star.png" className="img-fluid" alt="" />
               <p className="lead">Github</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Styles</li>
-                <li class="list-group-item">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Styles</li>
+                <li className="list-group-item">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
                       Background: linear-gradient()
                     </li>
-                    <li class="list-group-item">icon arrow-right</li>
+                    <li className="list-group-item">icon arrow-right</li>
                   </ul>
                 </li>
               </ul>
@@ -190,12 +190,16 @@ const Users = () => {
             <CardBody>
               <img src="/images/about.png" className="img-fluid" alt="" />
               <p className="lead">About</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Styles</li>
-                <li class="list-group-item">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">border-left (activity-line)</li>
-                    <li class="list-group-item">position-absolute (icons)</li>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Styles</li>
+                <li className="list-group-item">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      border-left (activity-line)
+                    </li>
+                    <li className="list-group-item">
+                      position-absolute (icons)
+                    </li>
                   </ul>
                 </li>
               </ul>

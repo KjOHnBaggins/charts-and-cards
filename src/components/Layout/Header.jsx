@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { forwardRef, useContext, useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../context/theme";
 
-const Header = ({ onSearchChange, toggleMenu }) => {
+const Header = ({ onSearchChange, toggleMenu }, top) => {
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
   const [search, setSearch] = useState(null);
 
@@ -57,7 +57,7 @@ const Header = ({ onSearchChange, toggleMenu }) => {
   };
 
   return (
-    <header id="page-topbar">
+    <header id="page-topbar" ref={top}>
       <div className="navbar-header">
         <div className="d-flex w-100 justify-content-between">
           <div className="">
@@ -96,4 +96,4 @@ const Header = ({ onSearchChange, toggleMenu }) => {
   );
 };
 
-export default Header;
+export default forwardRef(Header);

@@ -13,9 +13,9 @@ import {
   fetchPopulation,
 } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
-const Dashboard = ({ countryCode, adCompRef }) => {
+const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   const [country, setCountry] = useState(null);
   const [internetUsage, setInternetUsage] = useState(null);
   const [gdp, setGdp] = useState(null);
@@ -103,11 +103,11 @@ const Dashboard = ({ countryCode, adCompRef }) => {
               ))}
             </Row>
             <Row>
-              <AdComp ref={adCompRef} />
+              <AdComp ref={githubref} />
             </Row>
           </Col>
           <Col xl="8">
-            <MetricsComp countryCode={countryCode} />
+            <MetricsComp countryCode={countryCode} ref={chartsref} />
             <Card className="my-5">
               <ColumnChart
                 dataColors={["#a855f7", "#3258f2", "#a0eade"]}
@@ -121,7 +121,7 @@ const Dashboard = ({ countryCode, adCompRef }) => {
         </Row>
         <Row>
           <Col>
-            <ActivityComp />
+            <ActivityComp ref={aboutref} />
           </Col>
         </Row>
       </Container>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { fetchEmploymentData } from "../../src/data";
 
-const MetricsComp = ({ dataColor, countryCode }) => {
+const MetricsComp = ({ dataColor, countryCode }, chartsref) => {
   const [unemploymentSeries, setUnemploymentSeries] = useState([]);
   const [employmentSeries, setEmploymentSeries] = useState([]);
   const [maleEmploymentSeries, setMaleEmploymentSeries] = useState([]);
@@ -128,7 +128,7 @@ const MetricsComp = ({ dataColor, countryCode }) => {
     },
   };
   return (
-    <div className="my-5">
+    <div className="my-5" ref={chartsref}>
       <ReactApexChart
         type="area"
         options={options}
@@ -140,4 +140,4 @@ const MetricsComp = ({ dataColor, countryCode }) => {
   );
 };
 
-export default MetricsComp;
+export default forwardRef(MetricsComp);

@@ -1,5 +1,9 @@
 @use "./variables" as *;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $body-bg;
   &.dark {
@@ -122,7 +126,7 @@ body {
   // right: 0;
   // left: $sidebar-width;
   // z-index: 5;
-  // background-color: $container-bg;
+  background-color: $container-bg;
   box-shadow: 0 0.75rem 1.5rem rgb(18, 38, 63, 0.1);
 }
 
@@ -135,24 +139,42 @@ body {
   flex-direction: column;
   justify-content: space-around;
   width: min(45%, 20rem);
-  background-color: pink;
+  background-color: $container-bg;
   border-radius: 1vw;
+  box-shadow: 0 0.75rem 1.5rem hsla(213, 56%, 16%, 0.35);
 }
 
-.menu-pill {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 0.5rem;
-  text-align: center;
-  border-radius: 0.5rem;
-}
 .menu-item {
+  margin: auto;
+  width: 85%;
+  padding: 0.8rem;
+  border-radius: 1vw;
+  cursor: pointer;
   &:hover,
   &:active {
-    color: $link-hover-color;
-    background-color: $container-bg;
+    color: $container-bg;
+    background-color: $link-hover-color;
+  }
+  button {
+    color: inherit;
+    margin: auto;
+    padding: 0 0.75rem 0 0;
+    background-color: transparent;
+  }
+  .menu-pill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+    margin: auto;
+    border-radius: 0.5rem;
+    color: inherit;
+  }
+  a {
+    &:hover {
+      color: inherit;
+    }
   }
 }
 
@@ -162,11 +184,6 @@ footer {
   max-width: 1444px;
   margin: auto;
   height: 4rem;
-}
-
-.sidebar-menu {
-  background-color: beige;
-  box-shadow: 0 0.75rem 1.5rem hsla(213, 56%, 16%, 0.35);
 }
 
 .logo {
@@ -206,4 +223,21 @@ footer {
 
 .invert-card {
   background-color: $invert-bg-color;
+}
+
+.scroll-to-top {
+  position: fixed;
+  width: fit-content;
+  inset: auto 1rem 1rem auto;
+  padding: 1rem;
+  background-color: $container-bg;
+  box-shadow: 0 0 1em rgb(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+button {
+  background-color: $container-bg;
+  border: none;
+  outline: none;
+  border-radius: 2vw;
 }

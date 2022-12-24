@@ -1,10 +1,12 @@
 import { Card, CardBody, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { forwardRef } from "react";
 
-const ActivityComp = () => {
+const ActivityComp = ({ props }, aboutref) => {
   return (
-    <>
+    // wrapper div need for ref to work, otherwise react throws an error and refs doesnt work, its up to bootstrap
+    <div className="" ref={aboutref}>
       <Card className="px-3">
         <CardBody>
           <CardTitle className="mb-5 fw-bold">
@@ -110,8 +112,8 @@ const ActivityComp = () => {
           </div>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 };
 
-export default ActivityComp;
+export default forwardRef(ActivityComp);

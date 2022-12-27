@@ -5,7 +5,7 @@
 //Color System
 $purple: hsl(271, 91%, 65%);
 $white: #fff;
-$blue: #3258f2;
+$blue: #0e36d8;
 $lightBlue: #a0eade;
 $cambridgeBlue: #bfd2bf;
 $orange: #f2545b;
@@ -22,7 +22,7 @@ $color: (
 );
 
 //Variants
-$primary: $purple;
+$primary: $blue;
 $secondary: $lightBlue;
 $success: $green;
 $link-color: $primary;
@@ -33,26 +33,27 @@ $theme-colors: (
 );
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 
-$body-bg: hsl(240, 27%, 98%);
-$container-bg: hsl(0, 0%, 100%);
+$body-bg: #f9f9fb;
+$container-bg: #ffffff;
 $container-padding: 24px;
 $sidebar-width: 10rem;
 $sidebar-width-collapsed: 4rem;
 $border-color: #e9ecef;
+$text-color: black;
+$link-color: $orange;
+$link-hover-color: $primary;
 $btn-text-color: $white;
+$invert-text-color: #e9ecef;
 $invert-bg-color: #111c44;
 
 .dark {
-  $container-bg: #111c44;
   $body-bg: #0f172a;
-  $link-color: $primary;
-  $link-hover-color: #e9ecef;
-  $text-color: black;
-  $card-bg: $container-bg;
   $body-color: #fff;
+  $container-bg: #111c44;
+  $card-bg: $container-bg;
+  $link-color: $primary;
+  $link-hover-color: $orange;
   $btn-text-color: black;
-  $invert-text-color: #e9ecef;
-  $invert-bg-color: hsl(0, 0%, 100%);
   --#{$variable-prefix}body-bg: #{$body-bg};
   --#{$variable-prefix}body-color: #{$body-color};
   --#{$variable-prefix}container-bg: #{$container-bg};
@@ -61,7 +62,6 @@ $invert-bg-color: #111c44;
   --#{$variable-prefix}link-hover-color: #{$link-hover-color};
   --#{$variable-prefix}text-color: #{$text-color};
   --#{$variable-prefix}btn-text-color: #{$btn-text-color};
-  --#{$variable-prefix}invert-bg-color: #{$invert-bg-color};
 
   @import "./node_modules/bootstrap/scss/bootstrap";
 }

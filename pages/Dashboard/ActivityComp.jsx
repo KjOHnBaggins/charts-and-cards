@@ -50,7 +50,7 @@ const ActivityComp = ({ props }, aboutref) => {
                 <div className="flex-grow">
                   A VentureBeat article noted that r/dataisbeautiful "...aims to
                   collect the best of the Web in a daily rounded up of gorgeous
-                  data visualizations."
+                  data visualizations."&nbsp;
                   <a href="https://venturebeat.com/business/data-is-beautiful-is-a-hidden-gem-for-gorgeous-data-visualizations/">
                     Read More
                   </a>
@@ -72,7 +72,7 @@ const ActivityComp = ({ props }, aboutref) => {
                   the decision of moderators at r/dataisbeautiful to temporarily
                   ban animated bar chart graphs showing the relative position of
                   entities on a list over time – so-called bar chart races –
-                  received attention from The Next Web.
+                  received attention from The Next Web.&nbsp;
                   <a href="https://thenextweb.com/news/reddit-dataisbeautiful-race-charts-ban">
                     Read More
                   </a>
@@ -94,7 +94,7 @@ const ActivityComp = ({ props }, aboutref) => {
                   <a href="https://twitter.com/ellieapeake?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
                     Eleanor Peake
                   </a>
-                  noted that, because the subreddit had received so many
+                  &nbsp;noted that, because the subreddit had received so many
                   submissions by Tinder users plotting their experiences on the
                   app, one Reddit user set up a separate subreddit dedicated
                   entirely to Tinder-related data visualizations.

@@ -128,7 +128,7 @@ const MetricsComp = ({ dataColor, countryCode }, chartsref) => {
     },
   };
   return (
-    <div className="my-5" ref={chartsref}>
+    <div className="my-5 w-100" ref={chartsref}>
       <ReactApexChart
         type="area"
         options={options}

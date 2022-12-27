@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { Fade } from "reactstrap";
+import { Route, Routes } from "react-router-dom";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import "./assets/styles/index.scss";
@@ -9,13 +8,9 @@ import Dashboard from "../pages/Dashboard/index.jsx";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import SideBarContainer from "./components/Layout/SideBarContainer";
-import AdComp from "../pages/Dashboard/AdComp";
-import ColumnChart from "../pages/Dashboard/ColumnChart";
-import ActivityComp from "../pages/Dashboard/ActivityComp";
 
 const App = () => {
   library.add(fas);
-  const [opened, setOpened] = useState(false);
   const [countryCode, setCountryCode] = useState(null);
   const [searchDataCountry, setSearchDataCountry] = useState(null);
   const top = useRef(null);
@@ -27,10 +22,6 @@ const App = () => {
     ref.current?.scrollIntoView({ block: "center", behavior: "smooth" });
   };
 
-  const toggleMenu = () => {
-    setOpened(!opened);
-  };
-
   const handleOnSearchChange = (searchData) => {
     setSearchDataCountry(searchData);
   };
@@ -39,24 +30,39 @@ const App = () => {
     setCountryCode(searchDataCountry?.value);
   }, [searchDataCountry]);
 
+  // menu toggle without affecting state
+  // close dropdown menu when user clicks outside
+  const menuRef = useRef(null);
+  const toggleMenu = () => {
+    const classList = menuRef.current.classList;
+    classList.contains("open")
+      ? classList.remove("open")
+      : classList.add("open");
+  };
+  // useEffect(() => {
+  //   document.addEventListener("click", toggleMenu);
+  //   return () => {
+  //     document.removeEventListener("click", toggleMenu);
+  //   };
+  // }, [menuRef.current]);
+
   return (
     <>
-      <div className="">
+      <div className="app">
         <Header
           onSearchChange={handleOnSearchChange}
           toggleMenu={toggleMenu}
           ref={top}
         />
-        {/* strict mode throws a warning when <Fade> is used. That's up to bootstrap */}
-        <Fade in={opened} timeout={100}>
-          <SideBarContainer
-            toggleMenu={toggleMenu}
-            scrollWithUseRef={scrollWithUseRef}
-            githubref={githubref}
-            aboutref={aboutref}
-            chartsref={chartsref}
-          />
-        </Fade>
+        {/* strict mode throws a warning about findDomNode when <Fade> is used. That's up to bootstrap */}
+        <SideBarContainer
+          toggleMenu={toggleMenu}
+          scrollWithUseRef={scrollWithUseRef}
+          githubref={githubref}
+          aboutref={aboutref}
+          chartsref={chartsref}
+          menuRef={menuRef}
+        />
 
         <div className="main-content">
           <div className="page-content">
@@ -67,6 +73,9 @@ const App = () => {
                   countryCode && (
                     <Dashboard
                       countryCode={countryCode}
+                      scrollWithUseRef={scrollWithUseRef}
+                      top={top}
+                      bottom={bottom}
                       githubref={githubref}
                       chartsref={chartsref}
                       aboutref={aboutref}
@@ -74,11 +83,16 @@ const App = () => {
                   )
                 }
               />
-              <Route path="/users" element={<Users />} />
+              <Route
+                path="/users"
+                element={
+                  <Users top={top} scrollWithUseRef={scrollWithUseRef} />
+                }
+              />
             </Routes>
           </div>
         </div>
-        <Footer top={top} scrollWithUseRef={scrollWithUseRef} ref={bottom} />
+        <Footer ref={bottom} />
       </div>
     </>
   );

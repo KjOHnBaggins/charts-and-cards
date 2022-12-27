@@ -6,6 +6,7 @@ import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
 import CityRankings from "./CityRankings";
+import { ThemeContext } from "../../src/context/theme";
 import {
   fetchGDP,
   fetchCountryInfo,
@@ -13,9 +14,19 @@ import {
   fetchPopulation,
 } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { forwardRef, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
-const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
+const Dashboard = ({
+  countryCode,
+  githubref,
+  chartsref,
+  aboutref,
+  scrollWithUseRef,
+  top,
+  bottom,
+}) => {
+  const [{ dark }, toggleDark] = useContext(ThemeContext);
+
   const [country, setCountry] = useState(null);
   const [internetUsage, setInternetUsage] = useState(null);
   const [gdp, setGdp] = useState(null);
@@ -64,11 +75,20 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   return (
     <>
       <Container>
+        <button className="scroll-to">
+          <FontAwesomeIcon
+            className="scroll-to__icon"
+            icon={`fa-solid fa-circle-arrow-up`}
+            onClick={() => {
+              scrollWithUseRef(top);
+            }}
+          />
+        </button>
         <Breadcrumb
           title="Admin"
           breadcrumbItem={country ? "Search results" : "Not Found"}
         />
-        <Row>
+        <Row className="gx-5">
           <Col xl="4">
             <Row>
               <CityRankings
@@ -102,14 +122,13 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
                 </Col>
               ))}
             </Row>
-            <Row>
-              <AdComp ref={githubref} />
-            </Row>
           </Col>
           <Col xl="8">
-            <MetricsComp countryCode={countryCode} ref={chartsref} />
+            <AdComp ref={githubref} />
+
             <Card className="my-5">
               <ColumnChart
+                dark={dark}
                 dataColors={["#a855f7", "#3258f2", "#a0eade"]}
                 populationSeries={populationSeries}
                 malePopulationSeries={malePopulationSeries}
@@ -118,6 +137,7 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
             </Card>
             <CardComp country={country} countryCode={countryCode} />
           </Col>
+          <MetricsComp countryCode={countryCode} ref={chartsref} />
         </Row>
         <Row>
           <Col>

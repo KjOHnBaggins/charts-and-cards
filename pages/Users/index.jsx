@@ -1,9 +1,19 @@
 import React from "react";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Users = () => {
+const Users = ({ top, scrollWithUseRef }) => {
   return (
     <Container>
+      <button className="scroll-to">
+        <FontAwesomeIcon
+          className="scroll-to__icon"
+          icon={`fa-solid fa-circle-arrow-up`}
+          onClick={() => {
+            scrollWithUseRef(top);
+          }}
+        />
+      </button>
       <h1 className="display-3">For Developers</h1>
       <p className="lead my-5">
         This project is from a tutorial content of a youtube channel named&nbsp;
@@ -17,7 +27,7 @@ const Users = () => {
         </a>
         &nbsp;would be an honor...
       </p>
-      <p className="fw-bold mb-5 p-3 text-white invert-card">
+      <p className="fw-bold mb-5 p-3 text-white invert-card rounded-4">
         The api is from worldbank data help desk.&nbsp;
         <a href="https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information">
           See here
@@ -38,11 +48,11 @@ const Users = () => {
             <CardBody>
               <img
                 src="/images/population.png"
-                className="img-fluid mb-1"
+                className="img-fluid rounded-2 mb-1"
                 alt=""
               />
               <p className="lead">Population</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">
                   Chart type: <span className="fw-bold">area</span>
                 </li>
@@ -63,11 +73,11 @@ const Users = () => {
             <CardBody>
               <img
                 src="/images/labour-statistics.png"
-                className="img-fluid mb-1"
+                className="img-fluid rounded-2 mb-1"
                 alt=""
               />
               <p className="lead">Labour statistics</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">
                   Chart type: <span className="fw-bold">area</span>
                 </li>
@@ -91,11 +101,11 @@ const Users = () => {
             <CardBody>
               <img
                 src="/images/population-by-ages.png"
-                className="img-fluid mb-1"
+                className="img-fluid rounded-2 mb-1"
                 alt=""
               />
               <p className="lead">Population By Ages</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">
                   Chart type: <span className="fw-bold">polararea</span>
                 </li>
@@ -122,11 +132,11 @@ const Users = () => {
             <CardBody>
               <img
                 src="/images/country-info.png"
-                className="img-fluid"
+                className="img-fluid rounded-2"
                 alt=""
               />
               <p className="lead">Country Info</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">Data</li>
                 <li className="list-group-item">
                   <ul className="list-group list-group-numbered">
@@ -150,11 +160,11 @@ const Users = () => {
             <CardBody>
               <img
                 src="/images/gdp-and-coordinates.png"
-                className="img-fluid"
+                className="img-fluid rounded-2"
                 alt=""
               />
               <p className="lead">GDP and Coordinates</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">Data</li>
                 <li className="list-group-item">
                   <ul className="list-group list-group-numbered">
@@ -169,9 +179,13 @@ const Users = () => {
         <Col>
           <Card>
             <CardBody>
-              <img src="/images/github-star.png" className="img-fluid" alt="" />
+              <img
+                src="/images/github-star.png"
+                className="img-fluid rounded-2"
+                alt=""
+              />
               <p className="lead">Github</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">Styles</li>
                 <li className="list-group-item">
                   <ul className="list-group list-group-flush">
@@ -188,9 +202,13 @@ const Users = () => {
         <Col>
           <Card>
             <CardBody>
-              <img src="/images/about.png" className="img-fluid" alt="" />
+              <img
+                src="/images/about.png"
+                className="img-fluid rounded-2"
+                alt=""
+              />
               <p className="lead">About</p>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush rounded-2">
                 <li className="list-group-item">Styles</li>
                 <li className="list-group-item">
                   <ul className="list-group list-group-flush">

@@ -4,7 +4,7 @@ import { Card } from "reactstrap";
 
 const AdComp = ({ props }, githubref) => {
   return (
-    <Card>
+    <Card className="github-card">
       <div className="ad-container position-relative h-100 p-4" ref={githubref}>
         <span className="image-cover"></span>
         <div className="f-flex flex-column flex-auto position-relative">

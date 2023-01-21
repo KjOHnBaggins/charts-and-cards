@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Users = ({ top, scrollWithUseRef }) => {
+const Users = ({ scrollWithUseRef }) => {
   return (
     <Container>
       <button className="scroll-to">
@@ -10,18 +10,13 @@ const Users = ({ top, scrollWithUseRef }) => {
           className="scroll-to__icon"
           icon={`fa-solid fa-circle-arrow-up`}
           onClick={() => {
-            scrollWithUseRef(top);
+            scrollWithUseRef();
           }}
         />
       </button>
       <h1 className="display-3">For Developers</h1>
       <p className="lead my-5">
-        This project is from a tutorial content of a youtube channel named&nbsp;
-        <a href="https://www.youtube.com/channel/UCObrjoZZJSjznfCO5Vx9qUQ/videos">
-          webdecoded
-        </a>
-        . If you like this site, suscribe to the channel on youtube. Giving a
-        &nbsp;
+        This is a beginner react project. If you like this site, giving a &nbsp;
         <a href="https://github.com/KjOHnBaggins/react-dashboard">
           star on Github
         </a>

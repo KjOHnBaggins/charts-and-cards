@@ -14,17 +14,9 @@ import {
   fetchPopulation,
 } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef, forwardRef } from "react";
 
-const Dashboard = ({
-  countryCode,
-  githubref,
-  chartsref,
-  aboutref,
-  scrollWithUseRef,
-  top,
-  bottom,
-}) => {
+const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
 
   const [country, setCountry] = useState(null);
@@ -73,17 +65,8 @@ const Dashboard = ({
   ];
 
   return (
-    <>
+    <div>
       <Container>
-        <button className="scroll-to">
-          <FontAwesomeIcon
-            className="scroll-to__icon"
-            icon={`fa-solid fa-circle-arrow-up`}
-            onClick={() => {
-              scrollWithUseRef(top);
-            }}
-          />
-        </button>
         <Breadcrumb
           title="Admin"
           breadcrumbItem={country ? "Search results" : "Not Found"}
@@ -145,7 +128,7 @@ const Dashboard = ({
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

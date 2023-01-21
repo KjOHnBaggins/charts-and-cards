@@ -1,10 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { forwardRef } from "react";
+import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-const Footer = ({}, bottom) => {
+const Footer = ({ scrollWithUseRef }) => {
   return (
-    <footer ref={bottom}>
+    <footer>
+      <button className="scroll-to">
+        <FontAwesomeIcon
+          className="scroll-to__icon"
+          icon={`fa-solid fa-circle-arrow-up`}
+          onClick={() => {
+            scrollWithUseRef();
+          }}
+        />
+      </button>
+
       <Container fluid>
         <Row>
           <Col>&copy; {new Date().getFullYear()} Charts and Cards</Col>
@@ -15,4 +25,4 @@ const Footer = ({}, bottom) => {
   );
 };
 
-export default forwardRef(Footer);
+export default Footer;

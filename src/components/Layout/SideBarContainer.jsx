@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "reactstrap";
-
 const SideBarContainer = ({
   toggleMenu,
   scrollWithUseRef,
@@ -19,7 +18,7 @@ const SideBarContainer = ({
             onClick={toggleMenu}
             className="logo text-decoration-none mx-4"
           >
-            Home
+            Charts and Cards
           </Link>
         </div>
         <div className="sidebar-menu">

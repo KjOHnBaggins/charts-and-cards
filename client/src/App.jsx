@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard/index.jsx";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import SideBarContainer from "./components/Layout/SideBarContainer";
+import Gql from "./Gql";
 
 const App = () => {
   library.add(fas);
@@ -35,38 +36,41 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header onSearchChange={handleOnSearchChange} toggleMenu={toggleMenu} />
-      <SideBarContainer
-        toggleMenu={toggleMenu}
-        scrollToTop={scrollToTop}
-        githubref={githubref}
-        aboutref={aboutref}
-        chartsref={chartsref}
-        menuRef={menuRef}
-      />
-
-      <div className="page-content" ref={top}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              countryCode && (
-                <Dashboard
-                  countryCode={countryCode}
-                  scrollToTop={scrollToTop}
-                  githubref={githubref}
-                  chartsref={chartsref}
-                  aboutref={aboutref}
-                />
-              )
-            }
-          />
-          <Route path="/users" element={<Users scrollToTop={scrollToTop} />} />
-        </Routes>
-      </div>
-
-      <Footer scrollToTop={scrollToTop} />
+      <Gql />
     </div>
+    // <div className="app">
+    //   <Header onSearchChange={handleOnSearchChange} toggleMenu={toggleMenu} />
+    //   <SideBarContainer
+    //     toggleMenu={toggleMenu}
+    //     scrollToTop={scrollToTop}
+    //     githubref={githubref}
+    //     aboutref={aboutref}
+    //     chartsref={chartsref}
+    //     menuRef={menuRef}
+    //   />
+
+    //   <div className="page-content" ref={top}>
+    //     <Routes>
+    //       <Route
+    //         path="/"
+    //         element={
+    //           countryCode && (
+    //             <Dashboard
+    //               countryCode={countryCode}
+    //               scrollToTop={scrollToTop}
+    //               githubref={githubref}
+    //               chartsref={chartsref}
+    //               aboutref={aboutref}
+    //             />
+    //           )
+    //         }
+    //       />
+    //       <Route path="/users" element={<Users scrollToTop={scrollToTop} />} />
+    //     </Routes>
+    //   </div>
+
+    //   <Footer scrollToTop={scrollToTop} />
+    // </div>
   );
 };
 

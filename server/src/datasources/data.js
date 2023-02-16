@@ -1,30 +1,50 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
 
-class MoviesAPI extends RESTDataSource {
+class CountryAPI extends RESTDataSource {
   constructor() {
     super();
     this.baseURL = "https://api.worldbank.org/v2/country/";
   }
 
-  async getCountryInfo(id) {
+  async getCountry(id) {
     const data = await this.get(`${id}?format=json`);
-    console.log(data[1][0]);
     return data[1][0];
   }
 
-  async getMovie(id) {
-    return this.get(`movies/${encodeURIComponent(id)}`);
+  async getCountryInfo(id) {
+    const data = await this.get(
+      `${id}/indicator/IT.NET.USER.ZS;NY.GDP.MKTP.CD;MS.MIL.XPND.CN;SP.DYN.LE00.IN?source=2&mrnev=1&format=json`
+    );
+    return data[1];
   }
 
-  async getMostViewedMovies(limit = "10") {
-    const data = await this.get("movies", {
-      params: {
-        per_page: limit,
-        order_by: "most_viewed",
-      },
-    });
-    return data.results;
+  async getPopulation(id) {
+    const data = await this.get(
+      `${id}/indicator/SP.POP.TOTL;SP.POP.TOTL.MA.IN;SP.POP.TOTL.FE.IN?source=2&date=1990:2021&per_page=100&format=json`
+    );
+    return data[1];
+  }
+
+  async getPopulationByAges(id) {
+    const data = await this.get(
+      `${id}/indicator/JI.POP.0014.ZS;JI.POP.1524.ZS;JI.POP.2564.ZS;JI.POP.65UP.ZS?source=86&mrv=1&format=json`
+    );
+    return data[1];
+  }
+
+  async getUnemployment(id) {
+    const data = await this.get(
+      `${id}/indicator/SL.UEM.TOTL.ZS;SL.UEM.TOTL.MA.ZS;SL.UEM.TOTL.FE.ZS?source=2&per_page=100&date=1990:2021&format=json`
+    );
+    return data[1];
+  }
+
+  async getEmployment(id) {
+    const data = await this.get(
+      `${id}/indicator/BI.EMP.TOTL.PB.ZS;BI.EMP.TOTL.PB.MA.ZS;BI.EMP.TOTL.PB.FE.ZS?source=64&per_page=100&date=1990:2021&format=json`
+    );
+    return data[1];
   }
 }
 
-export default MoviesAPI;
+export default CountryAPI;

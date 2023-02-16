@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import MoviesAPI from "./datasources/data.js";
+import CountryAPI from "./datasources/data.js";
 import resolvers from "./resolvers.js";
 import typeDefs from "./schema.js";
 
@@ -14,7 +14,7 @@ const { url } = await startStandaloneServer(server, {
     const { cache } = server;
     return {
       dataSources: {
-        moviesAPI: new MoviesAPI({ cache }),
+        countryAPI: new CountryAPI({ cache }),
       },
     };
   },

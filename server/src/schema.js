@@ -1,23 +1,20 @@
-// const typeDefs = `#graphql
-//   type Book {
-//     title: String
-//     author: String
-//   }
-//   type Query {
-//     books: [Book]
-//   }
-// `;
-
 const typeDefs = `#graphql
     type Query {
-        country: Country
+        country(id: String!): Country
     }
     type Country {
-        name: String
-        region: String
+        id: String!
+        iso2Code: String!
+        name: String!
+        region: Region
         capitalCity: String
-        longitude: Int
-        latitude: Int
+        longitude: String
+        latitude: String
+    }
+    type Region {
+        id: String
+        iso2Code: String
+        value: String!
     }
 `;
 

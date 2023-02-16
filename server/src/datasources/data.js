@@ -1,10 +1,15 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
 
 class MoviesAPI extends RESTDataSource {
-  baseURL = "https://api.worldbank.org/v2/country/";
+  constructor() {
+    super();
+    this.baseURL = "https://api.worldbank.org/v2/country/";
+  }
 
-  async getCountryInfo(countryCode) {
-    return this.get(`${countryCode}`);
+  async getCountryInfo(id) {
+    const data = await this.get(`${id}?format=json`);
+    console.log(data[1][0]);
+    return data[1][0];
   }
 
   async getMovie(id) {

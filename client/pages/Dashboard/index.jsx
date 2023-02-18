@@ -1,7 +1,7 @@
 import Breadcrumb from "../../src/components/Common/Breadcrumb";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import CardComp from "./CardComp";
-import MetricsComp from "./MetricsComp";
+import UnemploymentChart from "./UnemploymentChart";
 import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
@@ -15,6 +15,7 @@ import {
 } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState, useContext, useRef, forwardRef } from "react";
+import EmploymentChart from "./EmploymentChart";
 
 const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
@@ -120,7 +121,8 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
             </Card>
             <CardComp country={country} countryCode={countryCode} />
           </Col>
-          <MetricsComp countryCode={countryCode} ref={chartsref} />
+          <UnemploymentChart countryCode={countryCode} ref={chartsref} />
+          <EmploymentChart countryCode={countryCode} ref={chartsref} />
         </Row>
         <Row>
           <Col>

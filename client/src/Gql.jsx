@@ -16,10 +16,12 @@ const CountryInfo = gql`
   }
 `;
 const Population = gql`
-  query Country($countryId: String!) {
+  query Population($countryId: String!) {
     population(id: $countryId) {
-      value
-      date
+      totalPopulation {
+        date
+        value
+      }
     }
   }
 `;
@@ -43,20 +45,20 @@ const Unemployment = gql`
 const countryId = "US";
 
 const Gql = () => {
-  const { loading, error, data } = useQuery(CountryInfo, {
+  const { loading, error, data } = useQuery(Population, {
     variables: { countryId },
   });
   if (loading) return "Loading...";
 
   if (error) return `Error! ${error.message}`;
-  console.log(data.countryInfo);
+  // console.log(data.countryInfo);
   return (
     <div className="gql">
       The setting sun, the rising sun
       {/* {data.country.name} */}
-      {/* {data.population.map((pop) => (
-        <h6>{pop.value}</h6>
-      ))} */}
+      {data.population.totalPopulation.value.map((pop) => (
+        <h6>{pop}</h6>
+      ))}
       {/* {data.populationByAges.map((pop) => (
         <h6>{pop.value}</h6>
       ))} */}

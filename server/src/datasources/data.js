@@ -41,7 +41,7 @@ class CountryAPI extends RESTDataSource {
 
   async getEmployment(id) {
     const data = await this.get(
-      `${id}/indicator/BI.EMP.TOTL.PB.ZS;BI.EMP.TOTL.PB.MA.ZS;BI.EMP.TOTL.PB.FE.ZS?source=64&per_page=100&date=1990:2021&format=json`
+      `${id}/indicator/SL.EMP.TOTL.SP.ZS;SL.EMP.TOTL.SP.MA.ZS;SL.EMP.TOTL.SP.FE.ZS?source=2&per_page=100&date=1990:2021&format=json`
     );
     return data[1];
   }

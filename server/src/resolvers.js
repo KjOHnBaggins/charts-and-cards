@@ -126,20 +126,19 @@ const resolvers = {
 
     employment: async (_, { id }, { dataSources }) => {
       const data = await dataSources.countryAPI.getEmployment(id);
-
       const employmentIndex = data
         ?.map((data) => data.indicator.id)
-        .lastIndexOf("BI.EMP.TOTL.PB.ZS");
+        .lastIndexOf("SL.EMP.TOTL.SP.ZS");
       const employment = data?.splice(0, employmentIndex + 1);
 
       const maleEmploymentIndex = data
         ?.map((data) => data.indicator.id)
-        .lastIndexOf("BI.EMP.TOTL.PB.MA.ZS");
+        .lastIndexOf("SL.EMP.TOTL.SP.MA.ZS");
       const maleEmployment = data.splice(0, maleEmploymentIndex + 1);
 
       const femaleEmploymentIndex = data
         ?.map((data) => data.indicator.id)
-        .lastIndexOf("BI.EMP.TOTL.PB.FE.ZS");
+        .lastIndexOf("SL.EMP.TOTL.SP.FE.ZS");
       const femaleEmployment = data.splice(0, femaleEmploymentIndex + 1);
 
       return {

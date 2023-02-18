@@ -18,7 +18,6 @@ const typeDefs = `#graphql
     }
     type Region {
         id: String
-        iso2Code: String
         value: String!
     }
     type CountryInfo {

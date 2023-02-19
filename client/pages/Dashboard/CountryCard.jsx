@@ -1,12 +1,36 @@
 import { Card, CardBody, CardTitle, Progress } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const CityRankings = ({
-  country,
-  internetUsage,
-  populationSeries,
-  malePopulationSeries,
-  femalePopulationSeries,
-}) => {
+import { useQuery, gql } from "@apollo/client";
+
+const CountryCard = ({ countryCode }) => {
+  const COUNTRY = gql`
+    query CountryInfo($countryCode: String!) {
+      countryInfo(id: $countryCode) {
+        internetUsage {
+          value
+        }
+        militaryExpense {
+          value
+        }
+        lifeExpectancy {
+          value
+        }
+      }
+      country(id: $countryCode) {
+        region {
+          value
+        }
+        name
+        capitalCity
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(COUNTRY, {
+    variables: { countryCode },
+  });
+
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
   return (
     <>
       <Card>
@@ -25,44 +49,34 @@ const CityRankings = ({
               <tbody>
                 <tr>
                   <td> Region </td>
-                  <td>{country ? country[0]?.region.value : "Loading"}</td>
+                  <td>{data.country.region.value}</td>
                 </tr>
                 <tr>
                   <td>Capital City</td>
                   <td>
-                    <h4>{country ? country[0]?.capitalCity : "Loading"}</h4>
+                    <h4>{data.country.capitalCity}</h4>
                   </td>
                 </tr>
                 <tr>
                   <td style={{ width: "30%" }}>
-                    <p className="mb-0">Total Population</p>
+                    <p className="mb-0">Internet Usage</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {populationSeries
-                        ? Math.floor(
-                            populationSeries[0]?.value / Math.pow(10, 6)
-                          )
-                        : "Loading"}
-                      million
+                      {data.countryInfo.internetUsage.value[0]}%
                     </p>
                   </td>
                 </tr>
                 <tr>
                   <td style={{ width: "30%" }}>
-                    <p className="mb-0">Male Population %</p>
+                    <p className="mb-0">Military Expense</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {malePopulationSeries
-                        ? Math.floor(
-                            malePopulationSeries[0]?.value / Math.pow(10, 6)
-                          )
-                        : "Loading"}
-                      million
+                      {data.countryInfo.militaryExpense.value[0]} $
                     </p>
                   </td>
-                  <td>
+                  {/* <td>
                     <Progress
                       value={
                         malePopulationSeries
@@ -77,23 +91,18 @@ const CityRankings = ({
                       className="bg-transparent progress-sm"
                       size="sm"
                     />
-                  </td>
+                  </td> */}
                 </tr>
                 <tr>
                   <td style={{ width: "30%" }}>
-                    <p className="mb-0">Female Population %</p>
+                    <p className="mb-0">Life Expectancy</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {femalePopulationSeries
-                        ? Math.floor(
-                            femalePopulationSeries[0]?.value / Math.pow(10, 6)
-                          )
-                        : "Loading"}
-                      million
+                      {data.countryInfo.lifeExpectancy.value[0]} yrs
                     </p>
                   </td>
-                  <td>
+                  {/* <td>
                     <Progress
                       value={
                         femalePopulationSeries
@@ -108,9 +117,9 @@ const CityRankings = ({
                       className="bg-transparent progress-sm"
                       size="sm"
                     />
-                  </td>
+                  </td> */}
                 </tr>
-                <tr>
+                {/* <tr>
                   <td style={{ width: "30%" }}>
                     <p className="mb-0">Individuals using internet</p>
                   </td>
@@ -127,7 +136,7 @@ const CityRankings = ({
                       size="sm"
                     />
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -137,4 +146,4 @@ const CityRankings = ({
   );
 };
 
-export default CityRankings;
+export default CountryCard;

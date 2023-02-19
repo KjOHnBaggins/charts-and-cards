@@ -1,66 +1,60 @@
 import Breadcrumb from "../../src/components/Common/Breadcrumb";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
-import CardComp from "./CardComp";
+import Population from "./Population";
+import PopulationByAgesPie from "./PopulationByAgesPie";
+import EmploymentChart from "./EmploymentChart";
 import UnemploymentChart from "./UnemploymentChart";
-import ColumnChart from "./ColumnChart";
 import ActivityComp from "./ActivityComp";
 import AdComp from "./AdComp";
-import CityRankings from "./CityRankings";
+import CountryCard from "./CountryCard";
 import { ThemeContext } from "../../src/context/theme";
-import {
-  fetchGDP,
-  fetchCountryInfo,
-  fetchInternetUsage,
-  fetchPopulation,
-} from "../../src/data";
+import { fetchGDP, fetchCountryInfo } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState, useContext, useRef, forwardRef } from "react";
-import EmploymentChart from "./EmploymentChart";
+import { useQuery, gql } from "@apollo/client";
 
 const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
 
   const [country, setCountry] = useState(null);
-  const [internetUsage, setInternetUsage] = useState(null);
-  const [gdp, setGdp] = useState(null);
-  const [populationSeries, setPopulationSeries] = useState([]);
-  const [malePopulationSeries, setMalePopulationSeries] = useState([]);
-  const [femalePopulationSeries, setFemalePopulationSeries] = useState([]);
 
   useEffect(() => {
     fetchCountryInfo(countryCode).then(({ country }) => {
       setCountry(country[1]);
     });
-    fetchGDP(countryCode).then(({ gdp }) => {
-      setGdp(gdp[1][1].value);
-    });
-    fetchInternetUsage(countryCode).then(({ internetUsage }) => {
-      setInternetUsage(internetUsage[1][1].value);
-    });
-    fetchPopulation(countryCode).then(
-      ({ population, malePopulation, femalePopulation }) => {
-        setPopulationSeries(population[1]);
-        setMalePopulationSeries(malePopulation[1]);
-        setFemalePopulationSeries(femalePopulation[1]);
-      }
-    );
   }, [countryCode]);
+
+  const COUNTRYINFO = gql`
+    query CountryInfo($countryCode: String!) {
+      countryInfo(id: $countryCode) {
+        gdp {
+          value
+        }
+      }
+      country(id: $countryCode) {
+        latitude
+        longitude
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(COUNTRYINFO, {
+    variables: { countryCode },
+  });
+
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
 
   const reports = [
     {
       title: "GDP",
       iconClass: "fa-sack-dollar",
-      description: gdp
-        ? `${(gdp / Math.pow(10, 12))?.toFixed(4)} trillion dollars`
-        : "Loading",
+      description: data.countryInfo.gdp.value[0],
       percent: "+1.2",
     },
     {
       title: "Coordinates (lat and long)",
       iconClass: "fa-location-dot",
-      description: country
-        ? `${country[0].latitude} ${country[0].longitude}`
-        : "Loading",
+      description: `${data.country.latitude} ${data.country.longitude}`,
       percent: "-5",
     },
   ];
@@ -75,13 +69,7 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
         <Row className="gx-5">
           <Col xl="4">
             <Row>
-              <CityRankings
-                country={country}
-                internetUsage={internetUsage}
-                populationSeries={populationSeries}
-                malePopulationSeries={malePopulationSeries}
-                femalePopulationSeries={femalePopulationSeries}
-              />
+              <CountryCard countryCode={countryCode} />
             </Row>
             <Row>
               {reports.map((report, key) => (
@@ -111,18 +99,16 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
             <AdComp ref={githubref} />
 
             <Card className="my-5">
-              <ColumnChart
+              <Population
                 dark={dark}
                 dataColors={["#a855f7", "#3258f2", "#a0eade"]}
-                populationSeries={populationSeries}
-                malePopulationSeries={malePopulationSeries}
-                femalePopulationSeries={femalePopulationSeries}
+                countryCode={countryCode}
               />
             </Card>
-            <CardComp country={country} countryCode={countryCode} />
+            {/* <PopulationByAgesPie country={country} countryCode={countryCode} /> */}
           </Col>
-          <UnemploymentChart countryCode={countryCode} ref={chartsref} />
-          <EmploymentChart countryCode={countryCode} ref={chartsref} />
+          {/* <UnemploymentChart countryCode={countryCode} ref={chartsref} /> */}
+          {/* <EmploymentChart countryCode={countryCode} ref={chartsref} /> */}
         </Row>
         <Row>
           <Col>

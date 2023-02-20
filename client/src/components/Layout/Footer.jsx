@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-const Footer = ({ scrollWithUseRef }) => {
+const Footer = ({ scrollToTop }) => {
   return (
     <footer>
       <button className="scroll-to">
@@ -10,7 +10,7 @@ const Footer = ({ scrollWithUseRef }) => {
           className="scroll-to__icon"
           icon={`fa-solid fa-circle-arrow-up`}
           onClick={() => {
-            scrollWithUseRef();
+            scrollToTop();
           }}
         />
       </button>

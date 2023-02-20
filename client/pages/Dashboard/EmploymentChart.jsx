@@ -30,7 +30,7 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
   if (error) return `Error! ${error.message}`;
 
   const chartData = {
-    name: "take it from the country prop",
+    name: "Employment population ratio total %",
     timeline: data.employment.employment.date,
     employment: data.employment.employment.value.map((value) =>
       value ? Math.round(value * 10) / 10 : null
@@ -45,14 +45,17 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
   const dataLines = [
     {
       name: `Employment Total`,
+      type: "column",
       data: chartData.employment,
     },
     {
       name: `Male Employment`,
+      type: "area",
       data: chartData.maleEmployment,
     },
     {
       name: `Female Employment`,
+      type: "line",
       data: chartData.femaleEmployment,
     },
   ];
@@ -61,20 +64,17 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
     chart: {
       id: "basic-bar",
       toolbar: {
-        show: true,
+        show: false,
       },
       zoom: {
         enabled: true,
-      },
-      stroke: {
-        curve: "smooth",
       },
     },
     dataLabels: {
       enabled: false,
     },
     title: {
-      text: `${chartData.name} labour statistics`,
+      text: `${chartData.name}`,
       align: "left",
     },
     markers: {
@@ -83,9 +83,29 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
         size: 7,
       },
     },
+    fill: {
+      opacity: [0.85, 0.25, 1],
+      gradient: {
+        inverseColors: false,
+        shade: "light",
+        type: "vertical",
+        opacityFrom: 0.85,
+        opacityTo: 0.55,
+        stops: [0, 100, 100, 100],
+      },
+    },
+    stroke: {
+      width: [0, 2, 5],
+      curve: "smooth",
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "50%",
+      },
+    },
     tooltip: {
-      intersect: true,
-      shared: false,
+      intersect: false,
+      shared: true,
     },
     xaxis: {
       type: "datetime",
@@ -119,14 +139,18 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
     },
   };
   return (
-    <div className="my-5 w-100" ref={chartsref}>
+    <div className="pt-3 mb-5 w-100" ref={chartsref}>
       <ReactApexChart
-        type="area"
+        type="line"
         options={options}
         series={dataLines}
         height="420"
         className="apex-charts"
       />
+      <p className="text-center pt-3 px-3">
+        Employment to population ratio is the proportion of a country's
+        population that is employed.
+      </p>
     </div>
   );
 };

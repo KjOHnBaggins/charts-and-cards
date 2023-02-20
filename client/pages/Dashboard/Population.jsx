@@ -10,11 +10,9 @@ const Population = ({ dataColor, countryCode }) => {
           value
         }
         malePopulation {
-          date
           value
         }
         femalePopulation {
-          date
           value
         }
       }
@@ -27,7 +25,7 @@ const Population = ({ dataColor, countryCode }) => {
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
   const chartData = {
-    name: "take it from the country prop",
+    name: "Population Growth",
     timeline: Array.from(data.population.totalPopulation.date).reverse(),
     population: data.population.totalPopulation.value
       .map((value) => (value ? Math.floor(value / 1000000) : null))
@@ -43,17 +41,17 @@ const Population = ({ dataColor, countryCode }) => {
   const dataLines = [
     {
       name: `Total Population`,
-      // type: "area",
+      type: "column",
       data: chartData.population,
     },
     {
       name: `Male Population`,
-      // type: "area",
+      type: "area",
       data: chartData.malePopulation,
     },
     {
       name: `Female Population`,
-      // type: "area",
+      type: "line",
       data: chartData.femalePopulation,
     },
   ];
@@ -65,15 +63,31 @@ const Population = ({ dataColor, countryCode }) => {
         enabled: true,
       },
     },
-
+    fill: {
+      opacity: [0.85, 0.25, 1],
+      gradient: {
+        inverseColors: false,
+        shade: "light",
+        type: "vertical",
+        opacityFrom: 0.85,
+        opacityTo: 0.55,
+        stops: [0, 100, 100, 100],
+      },
+    },
+    stroke: {
+      width: [0, 2, 5],
+      curve: "smooth",
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "50%",
+      },
+    },
     dataLabels: {
       enabled: false,
     },
-    stroke: {
-      curve: "smooth",
-    },
     title: {
-      text: `${chartData.name} population`,
+      text: `${chartData.name}`,
       align: "left",
       offsetY: 25,
       offsetX: 20,
@@ -98,20 +112,25 @@ const Population = ({ dataColor, countryCode }) => {
       type: "datetime",
 
       tooltip: {
-        enabled: false,
+        enabled: true,
       },
       categories: chartData.timeline,
     },
   };
   return (
-    <div className="my-5">
+    <div className="mb-5">
       <ReactApexChart
-        type="area"
+        type="line"
         options={options}
         series={dataLines}
         height="420"
         className="apex-charts"
       />
+      <p className="text-center pt-3 px-3">
+        Total population is based on the de facto definition of population,
+        which counts all residents regardless of legal status or citizenship.
+        The values shown are midyear estimates.
+      </p>
     </div>
   );
 };

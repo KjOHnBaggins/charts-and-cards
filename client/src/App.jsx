@@ -11,7 +11,7 @@ import SideBarContainer from "./components/Layout/SideBarContainer";
 
 const App = () => {
   library.add(fas);
-  const [countryCode, setCountryCode] = useState("usa");
+  const [countryCode, setCountryCode] = useState(null);
 
   const githubref = useRef(null);
   const chartsref = useRef(null);

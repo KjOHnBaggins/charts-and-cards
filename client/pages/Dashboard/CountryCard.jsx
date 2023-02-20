@@ -40,7 +40,7 @@ const CountryCard = ({ countryCode }) => {
     <>
       <Card>
         <CardBody>
-          <CardTitle className="mb-4 h2">Country Info</CardTitle>
+          <CardTitle className="mb-4 h2">{data.country.name}</CardTitle>
           <div className="text-center">
             <div className="mb-4">
               <FontAwesomeIcon
@@ -78,7 +78,7 @@ const CountryCard = ({ countryCode }) => {
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      ${" "}
+                      <b>$</b>{" "}
                       {(data.countryInfo.gdp.value[0] / 1000000000000).toFixed(
                         2
                       )}{" "}
@@ -92,8 +92,8 @@ const CountryCard = ({ countryCode }) => {
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      $
-                      {parseFloat(
+                      <b>$</b>{" "}
+                      {(
                         data.countryInfo.militaryExpense.value[0] / 1000000000
                       ).toFixed(2)}{" "}
                       Billion
@@ -107,7 +107,10 @@ const CountryCard = ({ countryCode }) => {
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {data.countryInfo.lifeExpectancy.value[0].toFixed(2)}{" "}
+                      Avg.{" "}
+                      <b>
+                        {data.countryInfo.lifeExpectancy.value[0].toFixed(2)}
+                      </b>{" "}
                       Years
                     </p>
                   </td>
@@ -118,7 +121,8 @@ const CountryCard = ({ countryCode }) => {
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {data.countryInfo.internetUsage.value[0]}% of population
+                      {data.countryInfo.internetUsage.value[0].toFixed(2)}% of
+                      Population
                     </p>
                   </td>
                 </tr>

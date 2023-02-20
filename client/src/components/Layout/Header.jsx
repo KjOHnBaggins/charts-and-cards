@@ -13,10 +13,10 @@ const Header = ({ onSearchChange, toggleMenu }) => {
       .then((response) => response.json())
       .then((response) => {
         return {
-          options: response?.map((country) => {
+          options: Array.from(response)?.map((country) => {
             return {
               value: `${country.cca3}`,
-              label: `${country.name.official}`,
+              label: `${country.name.common}`,
             };
           }),
         };
@@ -28,7 +28,6 @@ const Header = ({ onSearchChange, toggleMenu }) => {
     setSearch(searchData.value);
     onSearchChange(searchData.value);
   };
-
   return (
     <header id="page-topbar">
       <Card>

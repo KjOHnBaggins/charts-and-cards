@@ -63,17 +63,17 @@ const UnemploymentChart = ({ dataColor, countryCode }, chartsref) => {
     chart: {
       id: "basic-bar",
       toolbar: {
-        show: false,
+        show: true,
       },
       zoom: {
-        enabled: false,
+        enabled: true,
       },
       stroke: {
         curve: "smooth",
       },
-      dataLabels: {
-        enabled: false,
-      },
+    },
+    dataLabels: {
+      enabled: false,
     },
     title: {
       text: `${chartData.name} labour statistics`,

@@ -4,74 +4,26 @@ import Population from "./Population";
 import PopulationByAgesPie from "./PopulationByAgesPie";
 import EmploymentChart from "./EmploymentChart";
 import UnemploymentChart from "./UnemploymentChart";
-import ActivityComp from "./ActivityComp";
-import AdComp from "./AdComp";
+import About from "./About";
+import Github from "./Github";
 import CountryCard from "./CountryCard";
 import { ThemeContext } from "../../src/context/theme";
-import { fetchGDP, fetchCountryInfo } from "../../src/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState, useContext, useRef, forwardRef } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useContext } from "react";
 
 const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
 
-  const [country, setCountry] = useState(null);
-
-  useEffect(() => {
-    fetchCountryInfo(countryCode).then(({ country }) => {
-      setCountry(country[1]);
-    });
-  }, [countryCode]);
-
-  const COUNTRYINFO = gql`
-    query CountryInfo($countryCode: String!) {
-      countryInfo(id: $countryCode) {
-        gdp {
-          value
-        }
-      }
-      country(id: $countryCode) {
-        latitude
-        longitude
-      }
-    }
-  `;
-  const { loading, error, data } = useQuery(COUNTRYINFO, {
-    variables: { countryCode },
-  });
-
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
-
-  const reports = [
-    {
-      title: "GDP",
-      iconClass: "fa-sack-dollar",
-      description: data.countryInfo.gdp.value[0],
-      percent: "+1.2",
-    },
-    {
-      title: "Coordinates (lat and long)",
-      iconClass: "fa-location-dot",
-      description: `${data.country.latitude} ${data.country.longitude}`,
-      percent: "-5",
-    },
-  ];
-
   return (
     <div>
       <Container>
-        <Breadcrumb
-          title="Admin"
-          breadcrumbItem={country ? "Search results" : "Not Found"}
-        />
+        <Breadcrumb title="Admin" breadcrumbItem={"This is the country name"} />
         <Row className="gx-5">
           <Col xl="4">
-            <Row>
-              <CountryCard countryCode={countryCode} />
-            </Row>
-            <Row>
+            {/* <Row> */}
+            <CountryCard countryCode={countryCode} />
+            {/* </Row> */}
+            {/* <Row>
               {reports.map((report, key) => (
                 <Col key={"_col_" + key}>
                   <Card className="mini-stats-wid">
@@ -93,26 +45,25 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
                   </Card>
                 </Col>
               ))}
-            </Row>
+            </Row> */}
           </Col>
           <Col xl="8">
-            <AdComp ref={githubref} />
-
-            <Card className="my-5">
-              <Population
-                dark={dark}
-                dataColors={["#a855f7", "#3258f2", "#a0eade"]}
-                countryCode={countryCode}
-              />
-            </Card>
-            {/* <PopulationByAgesPie country={country} countryCode={countryCode} /> */}
+            <Github ref={githubref} />
+            <PopulationByAgesPie countryCode={countryCode} />
           </Col>
-          {/* <UnemploymentChart countryCode={countryCode} ref={chartsref} /> */}
-          {/* <EmploymentChart countryCode={countryCode} ref={chartsref} /> */}
+          <Card className="my-5">
+            <Population
+              dark={dark}
+              dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+              countryCode={countryCode}
+            />
+          </Card>
+          <UnemploymentChart countryCode={countryCode} ref={chartsref} />
+          <EmploymentChart countryCode={countryCode} ref={chartsref} />
         </Row>
         <Row>
           <Col>
-            <ActivityComp ref={aboutref} />
+            <About ref={aboutref} />
           </Col>
         </Row>
       </Container>

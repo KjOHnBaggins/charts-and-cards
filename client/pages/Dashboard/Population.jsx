@@ -26,10 +26,9 @@ const Population = ({ dataColor, countryCode }) => {
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
-
   const chartData = {
     name: "take it from the country prop",
-    timeline: data.population.totalPopulation.date,
+    timeline: Array.from(data.population.totalPopulation.date).reverse(),
     population: data.population.totalPopulation.value
       .map((value) => (value ? Math.floor(value / 1000000) : null))
       .reverse(),
@@ -44,23 +43,31 @@ const Population = ({ dataColor, countryCode }) => {
   const dataLines = [
     {
       name: `Total Population`,
+      // type: "area",
       data: chartData.population,
     },
     {
       name: `Male Population`,
+      // type: "area",
       data: chartData.malePopulation,
     },
     {
       name: `Female Population`,
+      // type: "area",
       data: chartData.femalePopulation,
     },
   ];
 
   const options = {
     chart: {
+      // stacked: true,
       zoom: {
-        enabled: false,
+        enabled: true,
       },
+    },
+
+    dataLabels: {
+      enabled: false,
     },
     stroke: {
       curve: "smooth",
@@ -88,6 +95,8 @@ const Population = ({ dataColor, countryCode }) => {
       },
     },
     xaxis: {
+      type: "datetime",
+
       tooltip: {
         enabled: false,
       },

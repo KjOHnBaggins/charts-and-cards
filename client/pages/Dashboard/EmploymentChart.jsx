@@ -69,9 +69,9 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
       stroke: {
         curve: "smooth",
       },
-      dataLabels: {
-        enabled: false,
-      },
+    },
+    dataLabels: {
+      enabled: false,
     },
     title: {
       text: `${chartData.name} labour statistics`,

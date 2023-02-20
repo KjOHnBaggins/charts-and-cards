@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
-const PopulationByAgesPie = ({ country, countryCode }) => {
+const PopulationByAgesPie = ({ countryCode }) => {
   const POPULATIONBYAGES = gql`
     query PopulationByAges($countryCode: String!) {
       populationByAges(id: $countryCode) {

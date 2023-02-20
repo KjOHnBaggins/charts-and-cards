@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -8,7 +8,6 @@ import Dashboard from "../pages/Dashboard/index.jsx";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import SideBarContainer from "./components/Layout/SideBarContainer";
-import Gql from "./Gql";
 
 const App = () => {
   library.add(fas);
@@ -35,9 +34,6 @@ const App = () => {
   };
 
   return (
-    // <div className="app">
-    //   <Gql />
-    // </div>
     <div className="app">
       <Header onSearchChange={handleOnSearchChange} toggleMenu={toggleMenu} />
       <SideBarContainer

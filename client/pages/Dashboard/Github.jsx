@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { forwardRef } from "react";
 import { Card } from "reactstrap";
 
-const AdComp = ({ props }, githubref) => {
+const Github = ({ props }, githubref) => {
   return (
     <Card className="github-card">
       <div className="ad-container position-relative h-100 p-4" ref={githubref}>
@@ -26,4 +26,4 @@ const AdComp = ({ props }, githubref) => {
   );
 };
 
-export default forwardRef(AdComp);
+export default forwardRef(Github);

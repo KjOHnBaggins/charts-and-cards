@@ -6,6 +6,9 @@ const CountryCard = ({ countryCode }) => {
   const COUNTRY = gql`
     query CountryInfo($countryCode: String!) {
       countryInfo(id: $countryCode) {
+        gdp {
+          value
+        }
         internetUsage {
           value
         }
@@ -17,10 +20,12 @@ const CountryCard = ({ countryCode }) => {
         }
       }
       country(id: $countryCode) {
+        latitude
+        longitude
+        name
         region {
           value
         }
-        name
         capitalCity
       }
     }
@@ -59,11 +64,25 @@ const CountryCard = ({ countryCode }) => {
                 </tr>
                 <tr>
                   <td style={{ width: "30%" }}>
-                    <p className="mb-0">Internet Usage</p>
+                    <p className="mb-0">Coodinates</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {data.countryInfo.internetUsage.value[0]}%
+                      {data.country.latitude} °N, {data.country.longitude} °W
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ width: "30%" }}>
+                    <p className="mb-0">GDP</p>
+                  </td>
+                  <td style={{ width: "25%" }}>
+                    <p className="mb-0">
+                      ${" "}
+                      {(data.countryInfo.gdp.value[0] / 1000000000000).toFixed(
+                        2
+                      )}{" "}
+                      Trillion
                     </p>
                   </td>
                 </tr>
@@ -73,70 +92,36 @@ const CountryCard = ({ countryCode }) => {
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {data.countryInfo.militaryExpense.value[0]} $
+                      $
+                      {parseFloat(
+                        data.countryInfo.militaryExpense.value[0] / 1000000000
+                      ).toFixed(2)}{" "}
+                      Billion
                     </p>
                   </td>
-                  {/* <td>
-                    <Progress
-                      value={
-                        malePopulationSeries
-                          ? Math.round(
-                              (malePopulationSeries[0]?.value /
-                                populationSeries[0]?.value) *
-                                100
-                            )
-                          : 0
-                      }
-                      color="primary"
-                      className="bg-transparent progress-sm"
-                      size="sm"
-                    />
-                  </td> */}
                 </tr>
+
                 <tr>
                   <td style={{ width: "30%" }}>
                     <p className="mb-0">Life Expectancy</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {data.countryInfo.lifeExpectancy.value[0]} yrs
+                      {data.countryInfo.lifeExpectancy.value[0].toFixed(2)}{" "}
+                      Years
                     </p>
                   </td>
-                  {/* <td>
-                    <Progress
-                      value={
-                        femalePopulationSeries
-                          ? Math.round(
-                              (femalePopulationSeries[0]?.value /
-                                populationSeries[0]?.value) *
-                                100
-                            )
-                          : 0
-                      }
-                      color="primary"
-                      className="bg-transparent progress-sm"
-                      size="sm"
-                    />
-                  </td> */}
                 </tr>
-                {/* <tr>
+                <tr>
                   <td style={{ width: "30%" }}>
-                    <p className="mb-0">Individuals using internet</p>
+                    <p className="mb-0">Internet Usage</p>
                   </td>
                   <td style={{ width: "25%" }}>
                     <p className="mb-0">
-                      {internetUsage ? internetUsage.toFixed(2) : 0}%
+                      {data.countryInfo.internetUsage.value[0]}% of population
                     </p>
                   </td>
-                  <td>
-                    <Progress
-                      value={`${internetUsage?.toFixed(2)}`}
-                      color="primary"
-                      className="bg-transparent progress-sm"
-                      size="sm"
-                    />
-                  </td>
-                </tr> */}
+                </tr>
               </tbody>
             </table>
           </div>

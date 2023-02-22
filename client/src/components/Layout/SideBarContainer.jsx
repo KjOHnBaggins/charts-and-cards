@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "reactstrap";
 const SideBarContainer = ({
   toggleMenu,
-  scrollWithUseRef,
+  scrollIntoView,
   githubref,
   aboutref,
   chartsref,
@@ -27,7 +27,7 @@ const SideBarContainer = ({
             <li className="menu-item">
               <button
                 onClick={() => {
-                  scrollWithUseRef(githubref);
+                  scrollIntoView(githubref);
                 }}
                 className="text-sm d-flex"
               >
@@ -40,7 +40,7 @@ const SideBarContainer = ({
             <li className="menu-item">
               <button
                 onClick={() => {
-                  scrollWithUseRef(chartsref);
+                  scrollIntoView(chartsref);
                 }}
                 className="text-sm  d-flex "
               >
@@ -53,19 +53,19 @@ const SideBarContainer = ({
             <li className="menu-item">
               <button
                 onClick={() => {
-                  scrollWithUseRef(aboutref);
+                  scrollIntoView(aboutref);
                 }}
                 className="text-sm  d-flex"
               >
                 <div className="menu-pill">
                   <FontAwesomeIcon icon="fa-solid fa-calendar-days" />
-                  <span>about</span>
+                  <span>About</span>
                 </div>
               </button>
             </li>
             <li className="menu-item">
               <Link
-                to="/users"
+                to="/fordevs"
                 onClick={toggleMenu}
                 className="text-sm d-flex devs-link"
               >

@@ -1,8 +1,7 @@
-import React from "react";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Users = ({ scrollWithUseRef }) => {
+const ForDevs = ({ scrollToTop }) => {
   return (
     <Container>
       <button className="scroll-to">
@@ -10,14 +9,15 @@ const Users = ({ scrollWithUseRef }) => {
           className="scroll-to__icon"
           icon={`fa-solid fa-circle-arrow-up`}
           onClick={() => {
-            scrollWithUseRef();
+            scrollToTop();
           }}
         />
       </button>
       <h1 className="display-3">For Developers</h1>
       <p className="lead my-5">
-        This is a beginner react project. If you like this site, giving a &nbsp;
-        <a href="https://github.com/KjOHnBaggins/react-dashboard">
+        This project uses React, Graphql, Bootstrap and SCSS and built with
+        Vite. If you like this site, giving a&nbsp;
+        <a href="https://github.com/KjOHnBaggins/charts-and-cards">
           star on Github
         </a>
         &nbsp;would be an honor...
@@ -224,4 +224,4 @@ const Users = ({ scrollWithUseRef }) => {
   );
 };
 
-export default Users;
+export default ForDevs;

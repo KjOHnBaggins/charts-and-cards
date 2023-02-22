@@ -61,7 +61,6 @@ const UnemploymentChart = ({ dataColor, countryCode }, chartsref) => {
 
   const options = {
     chart: {
-      id: "basic-bar",
       toolbar: {
         show: false,
       },

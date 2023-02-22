@@ -28,13 +28,14 @@ const Dashboard = ({ countryCode, githubref, chartsref, aboutref }) => {
         </Row>
         <Card className="mt-3 mb-5">
           <Population
+            ref={chartsref}
             dark={dark}
             dataColors={["#a855f7", "#3258f2", "#a0eade"]}
             countryCode={countryCode}
           />
         </Card>
-        <UnemploymentChart countryCode={countryCode} ref={chartsref} />
-        <EmploymentChart countryCode={countryCode} ref={chartsref} />
+        <UnemploymentChart countryCode={countryCode} />
+        <EmploymentChart countryCode={countryCode} />
         <About ref={aboutref} />
       </Container>
     </div>

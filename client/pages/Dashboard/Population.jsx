@@ -1,7 +1,8 @@
+import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
-const Population = ({ dataColor, countryCode }) => {
+const Population = ({ dataColor, countryCode }, chartsref) => {
   const POPULATION = gql`
     query Population($countryCode: String!) {
       population(id: $countryCode) {
@@ -58,7 +59,6 @@ const Population = ({ dataColor, countryCode }) => {
 
   const options = {
     chart: {
-      // stacked: true,
       zoom: {
         enabled: true,
       },
@@ -102,23 +102,22 @@ const Population = ({ dataColor, countryCode }) => {
       offsetX: 20,
     },
     markers: {
-      size: 3,
-      strokeWidth: 0,
+      size: 5,
       hover: {
-        size: 5,
+        size: 9,
       },
+    },
+    tooltip: {
+      intersect: false,
+      shared: true,
     },
     xaxis: {
       type: "datetime",
-
-      tooltip: {
-        enabled: true,
-      },
       categories: chartData.timeline,
     },
   };
   return (
-    <div className="mb-5">
+    <div className="mb-5" ref={chartsref}>
       <ReactApexChart
         type="line"
         options={options}
@@ -126,7 +125,7 @@ const Population = ({ dataColor, countryCode }) => {
         height="420"
         className="apex-charts"
       />
-      <p className="text-center pt-3 px-3">
+      <p className="text-center pt-3 px-4">
         Total population is based on the de facto definition of population,
         which counts all residents regardless of legal status or citizenship.
         The values shown are midyear estimates.
@@ -135,4 +134,4 @@ const Population = ({ dataColor, countryCode }) => {
   );
 };
 
-export default Population;
+export default forwardRef(Population);

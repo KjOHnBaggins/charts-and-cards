@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 
 const About = ({ props }, aboutref) => {
   return (
-    // wrapper div need for ref to work, otherwise react throws an error and refs doesnt work, its up to bootstrap
+    // wrapper div need for ref to work, otherwise react throws an error and refs doesnt work
     <div className="" ref={aboutref}>
       <Card className="px-3">
         <CardBody>

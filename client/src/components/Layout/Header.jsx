@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ThemeContext } from "../../context/theme";
@@ -6,6 +7,7 @@ import { Card, Col } from "reactstrap";
 
 const Header = ({ onSearchChange, toggleMenu }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
+  const navigate = useNavigate();
   const [search, setSearch] = useState(null);
 
   const loadOptions = async (inputValue) => {
@@ -27,6 +29,7 @@ const Header = ({ onSearchChange, toggleMenu }) => {
   const handleOnChange = (searchData) => {
     setSearch(searchData.value);
     onSearchChange(searchData.value);
+    navigate(`/search/${searchData.value}`);
   };
   return (
     <header id="page-topbar">

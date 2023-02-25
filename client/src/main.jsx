@@ -6,7 +6,7 @@ import { ThemeProvider } from "./context/theme";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000",
+  uri: "https://charts-and-cards-production.up.railway.app/",
   cache: new InMemoryCache(),
   formatError: (formattedError, error) => {
     if (formattedError.extensions.code === ApolloServerErrorCode.BAD_REQUEST) {

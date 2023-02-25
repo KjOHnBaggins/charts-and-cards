@@ -8,6 +8,17 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 const client = new ApolloClient({
   uri: "http://localhost:4000",
   cache: new InMemoryCache(),
+  formatError: (formattedError, error) => {
+    if (formattedError.extensions.code === ApolloServerErrorCode.BAD_REQUEST) {
+      return {
+        ...formattedError,
+        message:
+          "An error occurred before your server could attempt to parse the given GraphQL operation.",
+      };
+    }
+
+    return formattedError;
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

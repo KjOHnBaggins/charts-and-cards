@@ -1,6 +1,7 @@
 import { useContext, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "reactstrap";
+import LazyComponent from "../../src/components/Common/LazyComponent";
 import { ThemeContext } from "../../src/context/theme";
 const Breadcrumb = lazy(() => import("../../src/components/Common/Breadcrumb"));
 const Github = lazy(() => import("./Github"));
@@ -32,28 +33,30 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
             </Suspense>
           </Col>
         </Row>
-        <Card className="mt-3 mb-5">
-          <Suspense fallback={<div>Loading Population Chart...</div>}>
-            <Population
-              ref={chartsref}
-              dark={dark}
-              dataColors={dataColors}
+        <LazyComponent>
+          <Card className="mt-3 mb-5">
+            <Suspense fallback={<div>Loading Population Chart...</div>}>
+              <Population
+                ref={chartsref}
+                dark={dark}
+                dataColors={dataColors}
+                countryCode={countryCode}
+              />
+            </Suspense>
+          </Card>
+          <Suspense fallback={<div>Loading Unemployment Chart...</div>}>
+            <UnemploymentChart
               countryCode={countryCode}
+              dataColors={["#2F131E", "#FFC857", "#DE3C4B"]}
             />
           </Suspense>
-        </Card>
-        <Suspense fallback={<div>Loading Unemployment Chart...</div>}>
-          <UnemploymentChart
-            countryCode={countryCode}
-            dataColors={["#2F131E", "#FFC857", "#DE3C4B"]}
-          />
-        </Suspense>
-        <Suspense fallback={<div>Loading Employment Chart...</div>}>
-          <EmploymentChart
-            countryCode={countryCode}
-            dataColors={["#DB3A34", "#FFC857", "#084C61"]}
-          />
-        </Suspense>
+          <Suspense fallback={<div>Loading Employment Chart...</div>}>
+            <EmploymentChart
+              countryCode={countryCode}
+              dataColors={["#DB3A34", "#FFC857", "#084C61"]}
+            />
+          </Suspense>
+        </LazyComponent>
         <About ref={aboutref} />
       </Container>
     </div>

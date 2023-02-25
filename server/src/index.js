@@ -3,7 +3,8 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import CountryAPI from "./datasources/data.js";
 import resolvers from "./resolvers.js";
 import typeDefs from "./schema.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const server = new ApolloServer({
   typeDefs,
   resolvers,

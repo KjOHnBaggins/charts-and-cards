@@ -10,10 +10,12 @@ const Breadcrumb = ({ title, breadcrumbItem }) => {
           <div className="page-title-right">
             <ol className="breadcrumb m-0">
               <BreadcrumbItem>
-                <Link to="#">{title}</Link>
+                <a href="https://github.com/KjOHnBaggins/charts-and-cards">
+                  {title}
+                </a>
               </BreadcrumbItem>
               <BreadcrumbItem>
-                <Link to="#">Authorized</Link>
+                <Link to="/fordevs">For Devs</Link>
               </BreadcrumbItem>
             </ol>
           </div>

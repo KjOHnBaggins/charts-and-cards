@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
-const Population = ({ dataColor, countryCode }, chartsref) => {
+const Population = ({ dataColors, countryCode }, chartsref) => {
   const POPULATION = gql`
     query Population($countryCode: String!) {
       population(id: $countryCode) {
@@ -63,8 +63,9 @@ const Population = ({ dataColor, countryCode }, chartsref) => {
         enabled: true,
       },
     },
+    colors: dataColors,
     fill: {
-      opacity: [0.85, 0.25, 1],
+      opacity: [0.85, 0.45, 1],
       gradient: {
         inverseColors: false,
         shade: "light",

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
@@ -37,8 +36,15 @@ const PopulationByAgesPie = ({ countryCode }) => {
       [parseFloat(data?.populationByAges.adult.value).toFixed(2)],
       [parseFloat(data?.populationByAges.elderly.value).toFixed(2)],
     ],
+
     chartOptions: {
       labels: ["Age 0-14", "Age 15-24", "Age 25-64", "Age 65 and higher"],
+      stroke: {
+        colors: ["#fff"],
+      },
+      fill: {
+        opacity: 0.85,
+      },
     },
   };
   return (

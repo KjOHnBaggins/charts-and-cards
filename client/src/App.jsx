@@ -1,17 +1,13 @@
 import { createRef, lazy, Suspense, useState } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../pages/Dashboard/index.jsx";
 import "./assets/styles/index.scss";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import SideBarContainer from "./components/Layout/SideBarContainer";
 import Home from "../pages/Home/Home.jsx";
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const ForDevs = lazy(() => import("../pages/forDevs/forDevs"));
-
 const App = () => {
-  library.add(fas);
   const [countryCode, setCountryCode] = useState(null);
 
   const githubref = createRef();
@@ -20,7 +16,6 @@ const App = () => {
   const menuRef = createRef();
 
   const scrollIntoView = (ref) => {
-    console.log(ref);
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
   const scrollToTop = () => {

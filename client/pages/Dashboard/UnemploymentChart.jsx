@@ -1,8 +1,8 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
-const UnemploymentChart = ({ dataColor, countryCode }, chartsref) => {
+const UnemploymentChart = ({ dataColors, countryCode }, chartsref) => {
   const UNEMPLOYMENT = gql`
     query Unemployment($countryCode: String!) {
       unemployment(id: $countryCode) {
@@ -71,6 +71,8 @@ const UnemploymentChart = ({ dataColor, countryCode }, chartsref) => {
         curve: "smooth",
       },
     },
+    colors: dataColors,
+
     dataLabels: {
       enabled: false,
     },

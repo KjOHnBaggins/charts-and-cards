@@ -3,22 +3,16 @@
 @import "./node_modules/bootstrap/scss/mixins";
 
 //Color System
-$purple: hsl(271, 91%, 65%);
 $white: #fff;
-$blue: #0e36d8;
+$blue: #97efe9;
 $lightBlue: #a0eade;
-$cambridgeBlue: #bfd2bf;
-$orange: #f2545b;
-$red: #a93f55;
+$orange: #e94f37;
 $green: #646f4b;
 $color: (
-  "purple": $purple,
   "blue": $blue,
   "orange": $orange,
   "lightBlue": $lightBlue,
-  "cambridgeBlue": $cambridgeBlue,
   "green": $green,
-  "red": $red,
 );
 
 //Variants
@@ -33,23 +27,24 @@ $theme-colors: (
 );
 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 
-$body-bg: #f9f9fb;
+$body-bg: #f7f9f9;
 $container-bg: #ffffff;
+$card-bg: #fffcf9;
 $container-padding: 24px;
 $sidebar-width: 10rem;
 $sidebar-width-collapsed: 4rem;
 $border-color: #e9ecef;
-$text-color: black;
+$text-color: #110b11;
 $link-color: $orange;
 $link-hover-color: $primary;
-$btn-text-color: $white;
-$invert-text-color: #e9ecef;
+$btn-text-color: #110b11;
+$invert-text-color: #f4fffd;
 $invert-bg-color: #111c44;
 
 .dark {
-  $body-bg: #0f172a;
+  $body-bg: #001524;
   $body-color: #fff;
-  $container-bg: #111c44;
+  $container-bg: #011936;
   $card-bg: $container-bg;
   $link-color: $primary;
   $link-hover-color: $orange;

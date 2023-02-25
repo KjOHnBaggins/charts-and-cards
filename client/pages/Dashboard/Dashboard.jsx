@@ -1,11 +1,10 @@
-import { useContext, useEffect, lazy, Suspense } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, lazy, Suspense } from "react";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "reactstrap";
-import Breadcrumb from "../../src/components/Common/Breadcrumb";
-import Github from "./Github";
-import CountryCard from "./CountryCard";
 import { ThemeContext } from "../../src/context/theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+const Breadcrumb = lazy(() => import("../../src/components/Common/Breadcrumb"));
+const Github = lazy(() => import("./Github"));
+const CountryCard = lazy(() => import("./CountryCard"));
 const Population = lazy(() => import("./Population"));
 const PopulationByAgesPie = lazy(() => import("./PopulationByAgesPie"));
 const EmploymentChart = lazy(() => import("./EmploymentChart"));
@@ -15,11 +14,12 @@ const About = lazy(() => import("./About"));
 const Dashboard = ({ githubref, chartsref, aboutref }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
   const { countryCode } = useParams();
+  const dataColors = ["#EC4E20", "#F7B538", "#026C7C"];
 
   return (
     <div>
       <Container>
-        <Breadcrumb title="Admin" breadcrumbItem={"Search Results:"} />
+        <Breadcrumb title="Github Repo" breadcrumbItem={"Search Results:"} />
         <Row className="gx-5">
           <Col xl="4">
             <CountryCard countryCode={countryCode} />
@@ -37,16 +37,22 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
             <Population
               ref={chartsref}
               dark={dark}
-              dataColors={["#a855f7", "#3258f2", "#a0eade"]}
+              dataColors={dataColors}
               countryCode={countryCode}
             />
           </Suspense>
         </Card>
         <Suspense fallback={<div>Loading Unemployment Chart...</div>}>
-          <UnemploymentChart countryCode={countryCode} />
+          <UnemploymentChart
+            countryCode={countryCode}
+            dataColors={["#2F131E", "#FFC857", "#DE3C4B"]}
+          />
         </Suspense>
         <Suspense fallback={<div>Loading Employment Chart...</div>}>
-          <EmploymentChart countryCode={countryCode} />
+          <EmploymentChart
+            countryCode={countryCode}
+            dataColors={["#DB3A34", "#FFC857", "#084C61"]}
+          />
         </Suspense>
         <About ref={aboutref} />
       </Container>

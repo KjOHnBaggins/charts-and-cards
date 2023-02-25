@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "reactstrap";
 const SideBarContainer = ({
   toggleMenu,
@@ -32,7 +31,6 @@ const SideBarContainer = ({
                 className="text-sm d-flex"
               >
                 <div className="menu-pill">
-                  <FontAwesomeIcon icon="fa-solid fa-users" />
                   <span>Github</span>
                 </div>
               </button>
@@ -45,7 +43,6 @@ const SideBarContainer = ({
                 className="text-sm  d-flex "
               >
                 <div className="menu-pill">
-                  <FontAwesomeIcon icon="fa-solid fa-calendar-days" />
                   <span>Charts</span>
                 </div>
               </button>
@@ -58,7 +55,6 @@ const SideBarContainer = ({
                 className="text-sm  d-flex"
               >
                 <div className="menu-pill">
-                  <FontAwesomeIcon icon="fa-solid fa-calendar-days" />
                   <span>About</span>
                 </div>
               </button>
@@ -70,7 +66,6 @@ const SideBarContainer = ({
                 className="text-sm d-flex devs-link"
               >
                 <div className="menu-pill">
-                  <FontAwesomeIcon icon="fa-solid fa-cart-arrow-down" />
                   <span>For devs</span>
                 </div>
               </Link>

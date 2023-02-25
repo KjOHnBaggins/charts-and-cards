@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
 
-const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
+const EmploymentChart = ({ dataColors, countryCode }, chartsref) => {
   const EMPLOYMENT = gql`
     query Employment($countryCode: String!) {
       employment(id: $countryCode) {
@@ -70,6 +70,7 @@ const EmploymentChart = ({ dataColor, countryCode }, chartsref) => {
         enabled: true,
       },
     },
+    colors: dataColors,
     dataLabels: {
       enabled: false,
     },

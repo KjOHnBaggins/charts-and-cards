@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open",
-    "start": "vite --omit=dev",
+    "start": "vite vite --config vite.config.js",
     "build": "vite build",
     "preview": "vite preview --open"
   },

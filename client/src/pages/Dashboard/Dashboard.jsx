@@ -1,9 +1,9 @@
 import { useContext, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "reactstrap";
-import LazyComponent from "../../src/components/Common/LazyComponent";
-import { ThemeContext } from "../../src/context/theme";
-const Breadcrumb = lazy(() => import("../../src/components/Common/Breadcrumb"));
+import LazyComponent from "../../components/Common/LazyComponent";
+import { ThemeContext } from "../../context/theme";
+const Breadcrumb = lazy(() => import("../../components/Common/Breadcrumb"));
 const Github = lazy(() => import("./Github"));
 const CountryCard = lazy(() => import("./CountryCard"));
 const Population = lazy(() => import("./Population"));

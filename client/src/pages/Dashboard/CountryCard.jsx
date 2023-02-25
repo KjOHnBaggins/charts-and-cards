@@ -34,7 +34,7 @@ const CountryCard = ({ countryCode }) => {
   });
 
   if (loading) return "Loading...";
-  if (error) return `Oops! Please try again.`;
+  if (error) return `Oops! Please refresh and try again.`;
   return (
     <>
       <Card>

@@ -4,9 +4,9 @@ import "./assets/styles/index.scss";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import SideBarContainer from "./components/Layout/SideBarContainer";
-import Home from "../pages/Home/Home.jsx";
-const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
-const ForDevs = lazy(() => import("../pages/forDevs/forDevs"));
+import Home from "./pages/Home/Home.jsx";
+const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"));
+const ForDevs = lazy(() => import("./pages/forDevs/forDevs"));
 const App = () => {
   const [countryCode, setCountryCode] = useState(null);
 

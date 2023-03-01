@@ -1,22 +1,34 @@
-import { createRef, lazy, Suspense, useState } from "react";
+import { createRef, lazy, Suspense, useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./assets/styles/index.scss";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
-import SideBarContainer from "./components/Layout/SideBarContainer";
+import Menu from "./components/Layout/Menu";
 import Home from "./pages/Home/Home.jsx";
 const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"));
 const ForDevs = lazy(() => import("./pages/forDevs/forDevs"));
 const App = () => {
   const [countryCode, setCountryCode] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const githubref = createRef();
   const chartsref = createRef();
   const aboutref = createRef();
   const menuRef = createRef();
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      toggleMenu();
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
+
   const scrollIntoView = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
+    toggleMenu();
   };
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -31,12 +43,13 @@ const App = () => {
     classList.contains("open")
       ? classList.remove("open")
       : classList.add("open");
+    setIsOpen(false);
   };
 
   return (
     <div className="app">
       <Header onSearchChange={handleOnSearchChange} toggleMenu={toggleMenu} />
-      <SideBarContainer
+      <Menu
         toggleMenu={toggleMenu}
         scrollToTop={scrollToTop}
         scrollIntoView={scrollIntoView}

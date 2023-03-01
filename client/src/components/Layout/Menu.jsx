@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card } from "reactstrap";
-const SideBarContainer = ({
+const Menu = ({
   toggleMenu,
   scrollIntoView,
   githubref,
@@ -77,4 +77,4 @@ const SideBarContainer = ({
   );
 };
 
-export default SideBarContainer;
+export default Menu;

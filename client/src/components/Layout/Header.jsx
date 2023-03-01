@@ -36,7 +36,7 @@ const Header = ({ onSearchChange, toggleMenu }) => {
         <div className="navbar-header">
           <div className="d-flex w-100 justify-content-between">
             <button
-              onClick={toggleMenu}
+              // onClick={toggleMenu}
               className="btn btn-sm px-3 font-size-16 header-item"
             >
               <svg

@@ -9,22 +9,29 @@ const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"));
 const ForDevs = lazy(() => import("./pages/forDevs/forDevs"));
 const App = () => {
   const [countryCode, setCountryCode] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   const githubref = createRef();
   const chartsref = createRef();
   const aboutref = createRef();
   const menuRef = createRef();
+  const menuButtonRef = createRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
-      toggleMenu();
+      if (
+        !menuRef.current.contains(event.target) &&
+        !menuButtonRef.current.contains(event.target)
+      ) {
+        menuRef.current.classList.remove("open");
+      }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener("click", handleClickOutside);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
-  }, [menuRef]);
+  }, []);
 
   const scrollIntoView = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -43,12 +50,15 @@ const App = () => {
     classList.contains("open")
       ? classList.remove("open")
       : classList.add("open");
-    setIsOpen(false);
   };
 
   return (
     <div className="app">
-      <Header onSearchChange={handleOnSearchChange} toggleMenu={toggleMenu} />
+      <Header
+        onSearchChange={handleOnSearchChange}
+        toggleMenu={toggleMenu}
+        menuButtonRef={menuButtonRef}
+      />
       <Menu
         toggleMenu={toggleMenu}
         scrollToTop={scrollToTop}

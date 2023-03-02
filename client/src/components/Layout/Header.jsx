@@ -4,7 +4,7 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { ThemeContext } from "../../context/theme";
 import { Card, Col } from "reactstrap";
 
-const Header = ({ onSearchChange, toggleMenu }) => {
+const Header = ({ onSearchChange, toggleMenu, menuButtonRef }) => {
   const [{ dark }, toggleDark] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [search, setSearch] = useState(null);
@@ -36,7 +36,8 @@ const Header = ({ onSearchChange, toggleMenu }) => {
         <div className="navbar-header">
           <div className="d-flex w-100 justify-content-between">
             <button
-              // onClick={toggleMenu}
+              ref={menuButtonRef}
+              onClick={toggleMenu}
               className="btn btn-sm px-3 font-size-16 header-item"
             >
               <svg

@@ -21,9 +21,11 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
     <div>
       <Container>
         <Breadcrumb title="Github Repo" breadcrumbItem={"Search Results:"} />
-        <Row className="gx-5">
+        <Row className="gx-4">
           <Col xl="4">
-            <CountryCard countryCode={countryCode} />
+            <Suspense fallback={<div>Loading Country Info...</div>}>
+              <CountryCard countryCode={countryCode} />
+            </Suspense>
           </Col>
           <Col xl="8">
             <Github ref={githubref} />
@@ -44,12 +46,16 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
               />
             </Suspense>
           </Card>
+        </LazyComponent>
+        <LazyComponent>
           <Suspense fallback={<div>Loading Unemployment Chart...</div>}>
             <UnemploymentChart
               countryCode={countryCode}
               dataColors={["#2F131E", "#FFC857", "#DE3C4B"]}
             />
           </Suspense>
+        </LazyComponent>
+        <LazyComponent>
           <Suspense fallback={<div>Loading Employment Chart...</div>}>
             <EmploymentChart
               countryCode={countryCode}
@@ -57,7 +63,9 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
             />
           </Suspense>
         </LazyComponent>
-        <About ref={aboutref} />
+        <LazyComponent>
+          <About ref={aboutref} />
+        </LazyComponent>
       </Container>
     </div>
   );

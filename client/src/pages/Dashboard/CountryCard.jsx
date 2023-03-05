@@ -1,5 +1,6 @@
 import { Card, CardBody, CardTitle, Progress } from "reactstrap";
 import { useQuery, gql } from "@apollo/client";
+import LoadingCard from "../../components/Common/LoadingCard";
 
 const CountryCard = ({ countryCode }) => {
   const COUNTRY = gql`
@@ -33,8 +34,10 @@ const CountryCard = ({ countryCode }) => {
     variables: { countryCode },
   });
 
-  if (loading) return "Loading...";
-  if (error) return `Oops! Please refresh and try again.`;
+  // if (loading) return "Loading Country Info...";
+  if (loading) return <LoadingCard />;
+
+  if (error) return `Oops! Please search and try again.`;
   return (
     <>
       <Card>

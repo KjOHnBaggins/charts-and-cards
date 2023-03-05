@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
+import LoadingCard from "../../components/Common/LoadingCard";
 
 const Population = ({ dataColors, countryCode }, chartsref) => {
   const POPULATION = gql`
@@ -23,7 +24,7 @@ const Population = ({ dataColors, countryCode }, chartsref) => {
     variables: { countryCode },
   });
 
-  if (loading) return "Loading...";
+  if (loading) return <LoadingCard />;
   if (error) return `Error! ${error.message}`;
   const chartData = {
     name: "Population Growth",

@@ -9,10 +9,10 @@ const LazyLoadedComponent = ({ children }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target); // stop observing the target element
+          observer.unobserve(entry.target);
         }
       },
-      { rootMargin: "0px 0px -20px 0px" } // set a margin to detect the visibility before it is actually visible
+      { rootMargin: "0px 0px -50px 0px" }
     );
 
     observer.observe(ref.current);

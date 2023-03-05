@@ -26,7 +26,7 @@ const EmploymentChart = ({ dataColors, countryCode }, chartsref) => {
     variables: { countryCode },
   });
 
-  if (loading) return "Loading...";
+  if (loading) return "Loading Employment Chart...";
   if (error) return `Error! ${error.message}`;
 
   const chartData = {

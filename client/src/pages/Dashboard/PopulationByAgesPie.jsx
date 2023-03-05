@@ -28,7 +28,7 @@ const PopulationByAgesPie = ({ countryCode }) => {
     variables: { countryCode },
   });
 
-  if (loading) return "Loading...";
+  if (loading) return "Loading Population Demographic...";
   const options = {
     series: [
       [parseFloat(data?.populationByAges.child.value).toFixed(2)],

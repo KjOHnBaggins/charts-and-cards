@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery, gql } from "@apollo/client";
+import LoadingCard from "../../components/Common/LoadingCard";
 
 const UnemploymentChart = ({ dataColors, countryCode }, chartsref) => {
   const UNEMPLOYMENT = gql`
@@ -26,7 +27,9 @@ const UnemploymentChart = ({ dataColors, countryCode }, chartsref) => {
     variables: { countryCode },
   });
 
-  if (loading) return "Loading...";
+  // if (loading) return "Loading Unemployment Chart...";
+  if (loading) return <LoadingCard />;
+
   if (error) return `Error! ${error.message}`;
 
   const chartData = {

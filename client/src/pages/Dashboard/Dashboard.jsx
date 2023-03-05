@@ -1,7 +1,7 @@
 import { useContext, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "reactstrap";
-import LazyComponent from "../../components/Common/LazyComponent";
+import LazyLoadedComponent from "../../components/Common/LazyLoadedComponent";
 import { ThemeContext } from "../../context/theme";
 const Breadcrumb = lazy(() => import("../../components/Common/Breadcrumb"));
 const Github = lazy(() => import("./Github"));
@@ -23,21 +23,25 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
         <Breadcrumb title="Github Repo" breadcrumbItem={"Search Results:"} />
         <Row className="gx-4">
           <Col xl="4">
-            <Suspense fallback={<div>Loading Country Info...</div>}>
-              <CountryCard countryCode={countryCode} />
-            </Suspense>
+            <LazyLoadedComponent>
+              <Suspense fallback={<div>Loading...</div>}>
+                <CountryCard countryCode={countryCode} />
+              </Suspense>
+            </LazyLoadedComponent>
           </Col>
           <Col xl="8">
             <Github ref={githubref} />
 
-            <Suspense fallback={<div>Loading Population Demographic...</div>}>
-              <PopulationByAgesPie countryCode={countryCode} />
-            </Suspense>
+            <LazyLoadedComponent>
+              <Suspense fallback={<div>Loading...</div>}>
+                <PopulationByAgesPie countryCode={countryCode} />
+              </Suspense>
+            </LazyLoadedComponent>
           </Col>
         </Row>
-        <LazyComponent>
+        <LazyLoadedComponent>
           <Card className="mt-3 mb-5">
-            <Suspense fallback={<div>Loading Population Chart...</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <Population
                 ref={chartsref}
                 dark={dark}
@@ -46,26 +50,26 @@ const Dashboard = ({ githubref, chartsref, aboutref }) => {
               />
             </Suspense>
           </Card>
-        </LazyComponent>
-        <LazyComponent>
-          <Suspense fallback={<div>Loading Unemployment Chart...</div>}>
+        </LazyLoadedComponent>
+        <LazyLoadedComponent>
+          <Suspense fallback={<div>Loading...</div>}>
             <UnemploymentChart
               countryCode={countryCode}
               dataColors={["#2F131E", "#FFC857", "#DE3C4B"]}
             />
           </Suspense>
-        </LazyComponent>
-        <LazyComponent>
-          <Suspense fallback={<div>Loading Employment Chart...</div>}>
+        </LazyLoadedComponent>
+        <LazyLoadedComponent>
+          <Suspense fallback={<div>Loading...</div>}>
             <EmploymentChart
               countryCode={countryCode}
               dataColors={["#DB3A34", "#FFC857", "#084C61"]}
             />
           </Suspense>
-        </LazyComponent>
-        <LazyComponent>
+        </LazyLoadedComponent>
+        <LazyLoadedComponent>
           <About ref={aboutref} />
-        </LazyComponent>
+        </LazyLoadedComponent>
       </Container>
     </div>
   );

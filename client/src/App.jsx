@@ -1,6 +1,7 @@
 import { createRef, lazy, Suspense, useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./assets/styles/index.scss";
+import LoadingCard from "./components/Common/LoadingCard";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import Menu from "./components/Layout/Menu";
@@ -76,7 +77,7 @@ const App = () => {
             path="/search/:countryCode"
             element={
               countryCode && (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LoadingCard />}>
                   <Dashboard
                     countryCode={countryCode}
                     scrollToTop={scrollToTop}
@@ -91,7 +92,7 @@ const App = () => {
           <Route
             path="/fordevs"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<div>Loading For Developers Page...</div>}>
                 <ForDevs scrollToTop={scrollToTop} />
               </Suspense>
             }

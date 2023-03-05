@@ -196,6 +196,24 @@ button {
   }
 }
 
+.loading-chart {
+  background-image: linear-gradient(-45deg, #72ddf7, #fdc5f5, #23a6d5, #f7aef8);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
+  height: 420px;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .navbar-header {
   display: flex;
   justify-content: space-around;
